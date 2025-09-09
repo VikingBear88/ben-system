@@ -13,7 +13,7 @@ export class SkillCombatSheet extends AbilityBaseSheet {
   }
 
   get template() {
-    return "systems/ben-system/templates/item/item-skill-combat-sheet.hbs";
+    return "systems/ben-system/templates/item/item-skillcombat-sheet.hbs";
   }
 
   async getData(options) {

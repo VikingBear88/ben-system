@@ -60,12 +60,12 @@ const byType = (t)=> owned.filter(i => i.type === t);
 
 context.abilities = {
   skills: {
-    charisma: byType("skill-charisma"),
-    crafting: byType("skill-crafting"),
-    combat: byType("skill-combat"),
-    movement: byType("skill-movement"),
-    perception: byType("skill-perception"),
-    stealth: byType("skill-stealth"),
+    charisma: byType("skillcharisma"),
+    crafting: byType("skillcrafting"),
+    combat: byType("skillcombat"),
+    movement: byType("skillmovement"),
+    perception: byType("skillperception"),
+    stealth: byType("skillstealth"),
   },
   spells: {
     spell: byType("spell"),

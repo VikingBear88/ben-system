@@ -73,12 +73,12 @@ Hooks.once('init', function () {
   Items.unregisterSheet('core', ItemSheet);
 
   // Ability item sheets (NEW)
-  Items.registerSheet('ben-system', SkillCombatSheet,     { types: ['skillCombat'],     makeDefault: true });
-  Items.registerSheet('ben-system', SkillCharismaSheet,   { types: ['skillCharisma'],   makeDefault: true });
-  Items.registerSheet('ben-system', SkillCraftingSheet,   { types: ['skillCrafting'],   makeDefault: true });
-  Items.registerSheet('ben-system', SkillMovementSheet,   { types: ['skillMovement'],   makeDefault: true });
-  Items.registerSheet('ben-system', SkillPerceptionSheet, { types: ['skillPerception'], makeDefault: true });
-  Items.registerSheet('ben-system', SkillStealthSheet,    { types: ['skillStealth'],    makeDefault: true });
+  Items.registerSheet('ben-system', SkillCombatSheet,     { types: ['skillcombat'],     makeDefault: true });
+  Items.registerSheet('ben-system', SkillCharismaSheet,   { types: ['skillcharisma'],   makeDefault: true });
+  Items.registerSheet('ben-system', SkillCraftingSheet,   { types: ['skillcrafting'],   makeDefault: true });
+  Items.registerSheet('ben-system', SkillMovementSheet,   { types: ['skillmovement'],   makeDefault: true });
+  Items.registerSheet('ben-system', SkillPerceptionSheet, { types: ['skillperception'], makeDefault: true });
+  Items.registerSheet('ben-system', SkillStealthSheet,    { types: ['skillstealth'],    makeDefault: true });
 
   Items.registerSheet('ben-system', SpellSheet,  { types: ['spell'],  makeDefault: true });
   Items.registerSheet('ben-system', RitualSheet, { types: ['ritual'], makeDefault: true });

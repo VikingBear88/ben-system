@@ -43,8 +43,8 @@ export class AbilityBaseSheet extends ItemSheet {
     const ctx = await super.getData(options);
     ctx.cfg = BEN_SYSTEM;
 
-    ctx.isSkillCombat = this.item.type === 'skillCombat';
-    ctx.isGenericSkill = ['skillCharisma','skillCrafting','skillMovement','skillPerception','skillStealth'].includes(this.item.type);
+    ctx.isSkillCombat = this.item.type === 'skillcombat';
+    ctx.isGenericSkill = ['skillcharisma','skillcrafting','skillmovement','skillperception','skillstealth'].includes(this.item.type);
     ctx.isSpellish    = ['spell','ritual','music'].includes(this.item.type);
 
     const s = ctx.item.system ?? {};
@@ -125,7 +125,7 @@ function normalizeAbilityDelta(incoming, type, form) {
   if ('tags' in (incoming?.system ?? {}))        out.tags = String(incoming.system.tags ?? '');
 
   // Combat skills
-  if (type === 'skillCombat') {
+  if (type === 'skillcombat') {
     out.combat ??= {};
     const wType = domVal('system.combat.weaponType') ?? incoming?.system?.combat?.weaponType;
     if (!isNil(wType)) out.combat.weaponType = String(wType);
@@ -151,12 +151,12 @@ function normalizeAbilityDelta(incoming, type, form) {
 }
 
 /* ----- Thin per-type sheets that point to their templates ----- */
-export class SkillCombatSheet     extends AbilityBaseSheet { get template(){ return 'systems/ben-system/templates/item/item-skill-combat-sheet.hbs'; } }
-export class SkillCharismaSheet   extends AbilityBaseSheet { get template(){ return 'systems/ben-system/templates/item/item-skill-generic-sheet.hbs'; } }
-export class SkillCraftingSheet   extends AbilityBaseSheet { get template(){ return 'systems/ben-system/templates/item/item-skill-generic-sheet.hbs'; } }
-export class SkillMovementSheet   extends AbilityBaseSheet { get template(){ return 'systems/ben-system/templates/item/item-skill-generic-sheet.hbs'; } }
-export class SkillPerceptionSheet extends AbilityBaseSheet { get template(){ return 'systems/ben-system/templates/item/item-skill-generic-sheet.hbs'; } }
-export class SkillStealthSheet    extends AbilityBaseSheet { get template(){ return 'systems/ben-system/templates/item/item-skill-generic-sheet.hbs'; } }
+export class SkillCombatSheet     extends AbilityBaseSheet { get template(){ return 'systems/ben-system/templates/item/item-skillcombat-sheet.hbs'; } }
+export class SkillCharismaSheet   extends AbilityBaseSheet { get template(){ return 'systems/ben-system/templates/item/item-skillgeneric-sheet.hbs'; } }
+export class SkillCraftingSheet   extends AbilityBaseSheet { get template(){ return 'systems/ben-system/templates/item/item-skillgeneric-sheet.hbs'; } }
+export class SkillMovementSheet   extends AbilityBaseSheet { get template(){ return 'systems/ben-system/templates/item/item-skillgeneric-sheet.hbs'; } }
+export class SkillPerceptionSheet extends AbilityBaseSheet { get template(){ return 'systems/ben-system/templates/item/item-skillgeneric-sheet.hbs'; } }
+export class SkillStealthSheet    extends AbilityBaseSheet { get template(){ return 'systems/ben-system/templates/item/item-skillgeneric-sheet.hbs'; } }
 export class SpellSheet           extends AbilityBaseSheet { get template(){ return 'systems/ben-system/templates/item/item-spelllike-sheet.hbs'; } }
 export class RitualSheet          extends AbilityBaseSheet { get template(){ return 'systems/ben-system/templates/item/item-spelllike-sheet.hbs'; } }
 export class MusicSheet           extends AbilityBaseSheet { get template(){ return 'systems/ben-system/templates/item/item-spelllike-sheet.hbs'; } }

@@ -32,8 +32,8 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/ben-system/templates/item/parts/item-effects.hbs',
 
     // NEW ability item sheets
-    'systems/ben-system/templates/item/item-skill-combat-sheet.hbs',
-    'systems/ben-system/templates/item/item-skill-generic-sheet.hbs',
+    'systems/ben-system/templates/item/item-skillcombat-sheet.hbs',
+    'systems/ben-system/templates/item/item-skillgeneric-sheet.hbs',
     'systems/ben-system/templates/item/item-spelllike-sheet.hbs'
   ]);
 };

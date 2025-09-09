@@ -381,7 +381,7 @@ export class BenSystemAbilityItemSheet extends ItemSheet {
     ctx.previewLevel = computeLevelFromUses(totalUses);
 
     ctx.isGM = game.user.isGM;
-    ctx.isSkillCombat = (ctx.item.type === 'skill-combat');
+    ctx.isSkillCombat = (ctx.item.type === 'skillcombat');
     ctx.isSpellish = (ctx.item.type === 'spell' || ctx.item.type === 'ritual' || ctx.item.type === 'music');
     return ctx;
   }

@@ -16,7 +16,7 @@ export class BenSystemItem extends Item {
     s.tags     ??= (typeof s.tags === 'string' ? s.tags : '');
 
     switch (this.type) {
-      case 'skill-combat': {
+      case 'skillcombat': {
         s.skill  ??= { category: 'Combat', combat: true };
         s.combat ??= {};
         s.combat.weaponType ??= 'ThrownAmmo';
@@ -25,11 +25,11 @@ export class BenSystemItem extends Item {
         break;
       }
 
-      case 'skill-charisma':
-      case 'skill-crafting':
-      case 'skill-movement':
-      case 'skill-perception':
-      case 'skill-stealth': {
+      case 'skillcharisma':
+      case 'skillcrafting':
+      case 'skillmovement':
+      case 'skillperception':
+      case 'skillstealth': {
         s.skill ??= { category: 'General', combat: false };
         break;
       }

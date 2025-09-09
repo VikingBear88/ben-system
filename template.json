@@ -92,14 +92,13 @@
       "magicitem",
       "scroll",
       "trap",
-
-      "skillCharisma",
-      "skillCrafting",
-      "skillCombat",
-      "skillMovement",
-      "skillPerception",
-      "skillStealth",
-
+      "skillcombat",
+      "skillcharisma",
+      "skillcrafting",
+      "skillcombat",
+      "skillmovement",
+      "skillperception",
+      "skillstealth",
       "spell",
       "ritual",
       "music"
@@ -169,16 +168,16 @@
 
 
 
-    "skillCharisma":   { "templates": ["base","abilityBase","skillBase"], "system": { "skill": { "category": "Charisma"   } } },
-    "skillCrafting":   { "templates": ["base","abilityBase","skillBase"], "system": { "skill": { "category": "Crafting"   } } },
-    "skillMovement":   { "templates": ["base","abilityBase","skillBase"], "system": { "skill": { "category": "Movement"   } } },
-    "skillPerception": { "templates": ["base","abilityBase","skillBase"], "system": { "skill": { "category": "Perception" } } },
-    "skillStealth":    { "templates": ["base","abilityBase","skillBase"], "system": { "skill": { "category": "Stealth"    } } },
+    "skillcharisma":   { "templates": ["base","abilityBase","skillBase"], "system": { "skill": { "category": "Charisma"   } } },
+    "skillcrafting":   { "templates": ["base","abilityBase","skillBase"], "system": { "skill": { "category": "Crafting"   } } },
+    "skillmovement":   { "templates": ["base","abilityBase","skillBase"], "system": { "skill": { "category": "Movement"   } } },
+    "skillperception": { "templates": ["base","abilityBase","skillBase"], "system": { "skill": { "category": "Perception" } } },
+    "skillstealth":    { "templates": ["base","abilityBase","skillBase"], "system": { "skill": { "category": "Stealth"    } } },
 
-    "skillCombat": {
+    "skillcombat": {
       "templates": ["base","abilityBase","skillBase"],
       "system": {
-        "skill":  { "category": "Combat", "combat": true },
+        "skill":  { "category": "combat", "combat": true },
         "combat": { "weaponType": "ThrownAmmo", "damageType": "none", "hitMod": 0 }
       }
     },

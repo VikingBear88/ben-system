@@ -10,7 +10,7 @@ function nat(roll) { return roll?.terms?.[0]?.results?.[0]?.result ?? roll.resul
 export async function useAbility(actor, item) {
   if (!actor || !item) return;
 
-  const isCombatSkill = (item.type === "skill-combat");
+  const isCombatSkill = (item.type === "skillcombat");
   const isSpell = (item.type === "spell" || item.type === "ritual" || item.type === "music");
 
   const dlg = await UseAbilityDialog.prompt({ item, actor, isSpell, isCombatSkill });
