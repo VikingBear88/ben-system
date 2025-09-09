@@ -1,0 +1,171 @@
+<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+
+  {{!-- Sheet Header --}}
+  <header class="sheet-header">
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+      {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
+      use both the "grid" and "grid-Ncol" class where "N" can be any number
+      from 1 to 12 and will create that number of columns.  --}}
+<div class="resources grid grid-4col">
+  <div class="resource flex-group-center">
+    <label for="system.health.value" class="resource-label">Health</label>
+    <div class="resource-content flexrow flex-center flex-between">
+      <input type="text" name="system.health.value" value="{{system.health.value}}" data-dtype="Number"/>
+      <span> / </span>
+      {{!-- ← computed in actor.mjs --}}
+      <input type="text" name="system.health.max" value="{{system.health.max}}" data-dtype="Number" disabled/>
+    </div>
+  </div>
+
+  <div class="resource flex-group-center">
+    <label for="system.temp.value" class="resource-label">Temp</label>
+    <div class="resource-content flexrow flex-center flex-between">
+      <input type="text" name="system.temp.value" value="{{system.temp.value}}" data-dtype="Number"/>
+    </div>
+  </div>
+
+  <div class="resource flex-group-center">
+    <label for="system.mana.value" class="resource-label">Mana</label>
+    <div class="resource-content flexrow flex-center flex-between">
+      <input type="text" name="system.mana.value" value="{{system.mana.value}}" data-dtype="Number"/>
+      <span> / </span>
+      {{!-- ← computed from total INT --}}
+      <input type="text" name="system.mana.max" value="{{system.mana.max}}" data-dtype="Number" disabled/>
+    </div>
+  </div>
+
+  <div class="resource flex-group-center">
+    <label for="system.nft.value" class="resource-label">NFTs</label>
+    <div class="resource-content flexrow flex-center flex-between">
+      <input type="text" name="system.nft.value" value="{{system.nft.value}}" data-dtype="Number"/>
+    </div>
+  </div>
+</div>
+
+<div class="resources grid grid-4col">
+  <div class="resource flex-group-center">
+    <label class="resource-label">Walk Speed</label>
+    <div class="resource-content flexrow flex-center flex-between">
+      <span class="readout">
+        {{#if system.movement.walk.total}}{{system.movement.walk.total}}{{else}}0{{/if}}
+      </span>
+    </div>
+  </div>
+
+<div class="resource flex-group-center">
+  <label class="resource-label">Physical AC</label>
+  <div class="resource-content flexrow flex-center flex-between">
+    <span class="value" title="DEX base + DEX skill + CON base + CON skill + Gear (PAC)">
+      {{defencesTotals.pac}}
+    </span>
+  </div>
+</div>
+
+<div class="resource flex-group-center">
+  <label class="resource-label">Magical AC</label>
+  <div class="resource-content flexrow flex-center flex-between">
+    <span class="value" title="INT base + INT skill + CHA base + CHA skill + Gear (MAC)">
+      {{defencesTotals.mac}}
+    </span>
+  </div>
+</div>
+
+
+ <div class="resource flex-group-center">
+    <label class="resource-label">Swim Speed</label>
+    <div class="resource-content flexrow flex-center flex-between">
+      <span class="readout">
+        {{#if system.movement.swim.total}}{{system.movement.swim.total}}{{else}}0{{/if}}
+      </span>
+    </div>
+  </div>
+</div>
+
+      <div class="xp-level-row">
+<div class="level-pill">
+  <span>Level</span>
+  <span class="level-value">{{system.attributes.level.value}}</span>
+</div>
+
+<div class="xp-block">
+  <div class="xp-top">
+    <span>XP</span>
+    <div class="xp-controls">
+      <a class="xp-give" title="Give XP"><i class="fas fa-plus"></i></a>
+      <a class="xp-set"  title="Set XP"><i class="fas fa-pen"></i></a>
+    </div>
+  </div>
+
+  <div class="xp-bar">
+    <div class="xp-fill" style="width: {{system.xpProgress.pct}}%;"></div>
+  </div>
+
+  <div class="xp-stats">
+    <span>{{numberFormat currentXP decimals=0}} / {{numberFormat system.xpProgress.nextAt decimals=0}}</span>
+    <span>{{system.xpProgress.pct}}%</span>
+  </div>
+</div>
+
+
+</div>
+
+    </div>
+
+  </header>
+
+
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    {{!-- Default tab is specified in actor-sheet.mjs --}}
+    <a class="item" data-tab="stats">Stats</a>
+    <a class="item" data-tab="health">Health</a>
+    <a class="item" data-tab="equipped">Equipped</a>
+    <a class="item" data-tab="inventory">Inventory</a>
+    <a class="item" data-tab="spells">Spells</a>
+    <a class="item" data-tab="skills">Skills</a>
+    <a class="item" data-tab="ratings">Ratings</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+
+    {{!-- Stats Tab --}}
+    <div class="tab stats" data-group="primary" data-tab="stats">
+      {{!-- This is a Handlebars partial. They're stored in the `/parts` folder next to this sheet, and defined in module/helpers/templates.mjs --}}
+      {{> "systems/ben-system/templates/actor/parts/actor-stats.hbs"}}
+    </div>
+
+    {{!-- Health Tab --}}
+    <div class="tab health" data-group="primary" data-tab="health">
+       {{> "systems/ben-system/templates/actor/parts/actor-health.hbs"}}
+    </div>
+
+    {{!-- Equipped Tab --}}
+    <div class="tab equipped" data-group="primary" data-tab="equipped">
+      {{> "systems/ben-system/templates/actor/parts/actor-equipped.hbs"}}
+    </div>
+
+    {{!-- Inventory Tab --}}
+    <div class="tab inventory" data-group="primary" data-tab="inventory">
+       {{> "systems/ben-system/templates/actor/parts/actor-inventory.hbs"}}
+    </div>
+
+    {{!-- Spells Tab --}}
+    <div class="tab spells" data-group="primary" data-tab="spells">
+      {{> "systems/ben-system/templates/actor/parts/actor-spells.hbs"}}
+    </div>
+
+    {{!-- Skills Tab --}}
+    <div class="tab skills flexcol" data-group="primary" data-tab="skills">
+      {{> "systems/ben-system/templates/actor/parts/actor-skills.hbs"}}
+    </div>
+
+    {{!-- Ratings Tab --}}
+    <div class="tab ratings" data-group="primary" data-tab="ratings">
+      {{> "systems/ben-system/templates/actor/parts/actor-ratings.hbs"}}
+    </div>
+  </section>
+</form>

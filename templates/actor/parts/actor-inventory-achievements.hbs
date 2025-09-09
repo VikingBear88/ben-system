@@ -1,0 +1,77 @@
+<section class="ben-inventory ben-inventory--achievements">
+  <header class="ben-section-header flexrow">
+    <h3 class="flex1">Achievements</h3>
+    <a class="item-create" data-type="achievement" title="Create Achievement">
+      <i class="fas fa-plus"></i> New
+    </a>
+    <input
+      type="search"
+      class="achv-search"
+      placeholder="Search name or tag…"
+      aria-label="Search achievements by name or tag" />
+  </header>
+
+  <table class="ben-table ben-table--tight items-table">
+    <thead>
+      <tr>
+        <th class="col-name">Name</th>
+        <th class="col-tag">Tag</th>
+        <th class="col-reward">Reward</th>
+        <th class="col-actions num">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each achievements as |it|}}
+        <tr class="item achv-row" data-item-id="{{it.id}}" aria-expanded="false">
+          <td class="achv-name">
+            <div class="item-image"><img src="{{it.img}}" title="{{it.name}}"/></div>
+            <span class="achv-toggle" role="button" tabindex="0">{{it.name}}</span>
+          </td>
+
+          <td class="item-tag">
+            {{#if it.system.tag}}{{it.system.tag}}{{else}}—{{/if}}
+          </td>
+
+          <td class="item-reward">
+            {{#if it.system.reward}}{{it.system.reward}}{{else}}—{{/if}}
+          </td>
+
+          <td class="item-controls num">
+            <a class="item-control item-edit" title="Edit"><i class="fas fa-edit"></i></a>
+            <a class="item-control item-delete is-disabled" title="Delete (disabled)" aria-disabled="true">
+              <i class="fas fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+
+        <tr class="item-summary" data-for="{{it.id}}" style="display:none;">
+          <td colspan="4">
+            <div class="summary-content">
+              {{#if it.system.description}}
+                <div class="desc">{{{it.system.description}}}</div>
+              {{else}}
+                <em>No description.</em>
+              {{/if}}
+              <div class="grid grid-2col mt-2">
+                <div><strong>Tag:</strong> {{#if it.system.tag}}{{it.system.tag}}{{else}}—{{/if}}</div>
+                <div><strong>Reward:</strong> {{#if it.system.reward}}{{it.system.reward}}{{else}}—{{/if}}</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      {{/each}}
+
+      {{#unless achievements.length}}
+        <tr class="empty">
+          <td colspan="4"><em>No achievements yet.</em></td>
+        </tr>
+      {{/unless}}
+
+      {{!-- Shown only when a search filters everything out --}}
+      <tr class="filter-empty" style="display:none;">
+        <td colspan="4"><em>No matching achievements.</em></td>
+      </tr>
+    </tbody>
+  </table>
+</section>

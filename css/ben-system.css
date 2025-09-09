@@ -1,0 +1,867 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+/* Global styles */
+.window-app { font-family: "Roboto", sans-serif; }
+
+/* Restore Foundry's inline sizing for our sheets */
+.window-app.ben-system.sheet.actor,
+.window-app.ben-system.sheet.item {
+  width: 1000 !important;
+  height: 1000 !important;
+  max-width: 1000 !important;
+  max-height: 1000 !important;
+}
+
+/* Make sure the inner content doesn’t stretch the window */
+.window-app.ben-system.sheet.actor .window-content,
+.window-app.ben-system.sheet.item  .window-content {
+  width: auto;
+  height: auto;
+}
+
+.rollable:hover, .rollable:focus {
+  color: #000;
+  text-shadow: 0 0 10px red;
+  cursor: pointer;
+}
+
+.grid,
+.grid-2col {
+  display: grid;
+  grid-column: span 2/span 2;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 10px 0;
+  padding: 0;
+}
+.grid-3col  { grid-column: span 3/span 3;  grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-4col  { grid-column: span 4/span 4;  grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grid-5col  { grid-column: span 5/span 5;  grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.grid-6col  { grid-column: span 6/span 6;  grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.grid-7col  { grid-column: span 7/span 7;  grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.grid-8col  { grid-column: span 8/span 8;  grid-template-columns: repeat(8, minmax(0, 1fr)); }
+.grid-9col  { grid-column: span 9/span 9;  grid-template-columns: repeat(9, minmax(0, 1fr)); }
+.grid-10col { grid-column: span 10/span 10; grid-template-columns: repeat(10, minmax(0, 1fr)); }
+.grid-11col { grid-column: span 11/span 11; grid-template-columns: repeat(11, minmax(0, 1fr)); }
+.grid-12col { grid-column: span 12/span 12; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+
+.grid-start-2  { grid-column-start: 2; }
+.grid-start-3  { grid-column-start: 3; }
+.grid-start-4  { grid-column-start: 4; }
+.grid-start-5  { grid-column-start: 5; }
+.grid-start-6  { grid-column-start: 6; }
+.grid-start-7  { grid-column-start: 7; }
+.grid-start-8  { grid-column-start: 8; }
+.grid-start-9  { grid-column-start: 9; }
+.grid-start-10 { grid-column-start: 10; }
+.grid-start-11 { grid-column-start: 11; }
+.grid-start-12 { grid-column-start: 12; }
+
+.grid-span-2  { grid-column-end: span 2; }
+.grid-span-3  { grid-column-end: span 3; }
+.grid-span-4  { grid-column-end: span 4; }
+.grid-span-5  { grid-column-end: span 5; }
+.grid-span-6  { grid-column-end: span 6; }
+.grid-span-7  { grid-column-end: span 7; }
+.grid-span-8  { grid-column-end: span 8; }
+.grid-span-9  { grid-column-end: span 9; }
+.grid-span-10 { grid-column-end: span 10; }
+.grid-span-11 { grid-column-end: span 11; }
+.grid-span-12 { grid-column-end: span 12; }
+
+.flex-group-center,
+.flex-group-left,
+.flex-group-right {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.flex-group-left  { justify-content: flex-start; text-align: left; }
+.flex-group-right { justify-content: flex-end;   text-align: right; }
+
+.flexshrink   { flex: 0; }
+.flex-between { justify-content: space-between; }
+.flexlarge    { flex: 2; }
+.align-left   { justify-content: flex-start; text-align: left; }
+.align-right  { justify-content: flex-end;   text-align: right; }
+.align-center { justify-content: center;     text-align: center; }
+
+/* Styles limited to ben-system sheets */
+.ben-system .item-form { font-family: "Roboto", sans-serif; }
+.ben-system .sheet-header {
+  flex: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+.ben-system .sheet-header .profile-img {
+  flex: 0 0 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+.ben-system .sheet-header .header-fields { flex: 1; }
+.ben-system .sheet-header h1.charname {
+  height: 50px;
+  padding: 0px;
+  margin: 5px 0;
+  border-bottom: 0;
+}
+.ben-system .sheet-header h1.charname input { width: 100%; height: 100%; margin: 0; }
+.ben-system .sheet-tabs { flex: 0; }
+.ben-system .sheet-body,
+.ben-system .sheet-body .tab,
+.ben-system .sheet-body .tab .editor { height: 100%; }
+.ben-system .tox .tox-editor-container { background: #fff; }
+.ben-system .tox .tox-edit-area { padding: 0 8px; }
+.ben-system .resource-label { font-weight: bold; }
+
+.ben-system .items-header {
+  height: 28px;
+  margin: 2px 0;
+  padding: 0;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px groove #eeede0;
+  font-weight: bold;
+}
+.ben-system .items-header > * { font-size: 14px; text-align: center; }
+.ben-system .items-header .item-name {
+  font-weight: bold;
+  padding-left: 5px;
+  text-align: left;
+  display: flex;
+}
+
+.ben-system .items-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  color: #444;
+}
+.ben-system .items-list .item-list { list-style: none; margin: 0; padding: 0; }
+
+/* Generic row cell centering */
+.ben-system .items-list .item .item-detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ben-system .items-list .item-name {
+  flex: 2;
+  margin: 0;
+  overflow: hidden;
+  font-size: 13px;
+  text-align: left;
+  align-items: center;
+  display: flex;
+}
+.ben-system .items-list .item-name h3, .ben-system .items-list .item-name h4 {
+  margin: 0;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+.ben-system .items-list .item-controls {
+  display: flex;
+  flex: 0 0 100px;
+  justify-content: flex-end;
+}
+.ben-system .items-list .item-controls a {
+  font-size: 12px;
+  text-align: center;
+  margin: 0 6px;
+}
+.ben-system .items-list .item {
+  align-items: center;
+  padding: 0 2px;
+  border-bottom: 1px solid #c9c7b8;
+}
+.ben-system .items-list .item:last-child { border-bottom: none; }
+.ben-system .items-list .item .item-name { color: #191813; }
+.ben-system .items-list .item .item-name .item-image {
+  flex: 0 0 30px;
+  height: 30px;
+  background-size: 30px;
+  border: none;
+  margin-right: 5px;
+}
+.ben-system .items-list .item-prop {
+  text-align: center;
+  border-left: 1px solid #c9c7b8;
+  border-right: 1px solid #c9c7b8;
+  font-size: 12px;
+}
+
+.ben-system .items-list .items-header {
+  height: 28px;
+  margin: 2px 0;
+  padding: 0;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px groove #eeede0;
+  font-weight: bold;
+}
+.ben-system .items-list .items-header > * { font-size: 12px; text-align: center; }
+.ben-system .items-list .items-header .item-name { padding-left: 5px; text-align: left; }
+
+.ben-system .item-formula { flex: 0 0 200px; padding: 0 8px; }
+
+.ben-system .effects .item .effect-source,
+.ben-system .effects .item .effect-duration,
+.ben-system .effects .item .effect-controls {
+  text-align: center;
+  border-left: 1px solid #c9c7b8;
+  border-right: 1px solid #c9c7b8;
+  font-size: 12px;
+}
+.ben-system .effects .item .effect-controls { border: none; }
+
+/* XP bar + Level display */
+.xp-level-row { display:flex; align-items:center; gap:1rem; margin-bottom:.5rem; }
+.level-pill {
+  background: rgba(0,0,0,.15);
+  border: 1px solid rgba(255,255,255,.15);
+  color: var(--color-text-dark-5, #fff);
+  border-radius: 9999px;
+  padding: .25rem .75rem;
+  display:flex; gap:.5rem; align-items:center;
+}
+.level-pill .level-value { font-weight:700; }
+.xp-block { flex:1; }
+.xp-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:.25rem; }
+.xp-controls a { margin-left:.5rem; }
+
+.xp-bar {
+  position:relative;
+  height: 12px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 9999px;
+  overflow:hidden;
+}
+.xp-fill { height: 100%; background: linear-gradient(90deg, #6aa7ff, #8fffe0); }
+.xp-stats { display:flex; justify-content:space-between; font-size:.85rem; opacity:.85; margin-top:.25rem; }
+
+/* Make rich text editor visible and usable */
+.editor { min-height: 220px; }
+.editor .editor-content { min-height: 180px; }
+
+.race-table { width: 100%; border-collapse: collapse; }
+.race-table thead th {
+  text-align: left;
+  font-weight: 700;
+  padding: 4px 6px;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+}
+.race-table td {
+  padding: 6px;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.race-table .icon { width: 22px; height: 22px; object-fit: cover; margin-right: 6px; vertical-align: middle; border-radius: 3px; }
+.race-table .col-name { width: 40%; }
+.race-table .col-attr, .race-table .col-move { text-align: right; width: 7%; }
+.race-table .col-actions { text-align: right; white-space: nowrap; width: 8%; }
+.table-toolbar { margin-bottom: .5rem; }
+.table-toolbar .button { cursor: pointer; }
+
+/* One-line summary row */
+.stats-breakdowns .lp-row{
+  display:grid; grid-template-columns:1fr 1fr 1fr;
+  gap:1rem; align-items:center; margin:.25rem 0 .5rem;
+}
+
+/* Stat table */
+.stats-breakdowns .stat-table{ width:100%; border-collapse:collapse; table-layout:fixed; }
+.stats-breakdowns .stat-table th,
+.stats-breakdowns .stat-table td{
+  padding:.4rem .5rem; text-align:center;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.stats-breakdowns .stat-table th:nth-child(1),
+.stats-breakdowns .stat-table td:nth-child(1){ text-align:left; }
+.stats-breakdowns .stat-table th:nth-child(1){ width:10%; }
+.stats-breakdowns .stat-table th:nth-child(2){ width:18%; }
+.stats-breakdowns .stat-table th:nth-child(3){ width:18%; }
+.stats-breakdowns .stat-table th:nth-child(4){ width:18%; }
+.stats-breakdowns .stat-table th:nth-child(5){ width:18%; }
+.stats-breakdowns .stat-table th:nth-child(6){ width:18%; }
+
+/* Constrain the stepper group inside its cell */
+.stats-breakdowns .with-steppers{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:.25rem; max-width: 140px; width: 100%;
+  background: transparent !important;
+}
+.stats-breakdowns .with-steppers > *{ flex:0 0 auto; }
+.stats-breakdowns .with-steppers input{ width:56px; min-width:56px; text-align:center; }
+.stats-breakdowns .stepper{
+  width:24px; height:24px; line-height:22px; text-align:center;
+  border:1px solid rgba(255,255,255,.2); border-radius:4px; cursor:pointer;
+}
+
+.ben-system.sheet.actor .sheet-body .tab { padding-top: 20px; }
+
+.defences-subtab .center { text-align:center; }
+.defences-subtab .def-table {
+  width:100%; border-collapse:collapse;
+  margin:.5rem 0 1rem;
+  table-layout:fixed;
+}
+.defences-subtab .def-table th,
+.defences-subtab .def-table td {
+  padding:.5rem .6rem;
+  text-align:center;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.off-table { width: 100%; border-collapse: collapse; }
+.off-table th, .off-table td { padding: 4px 6px; text-align: center; }
+.off-table th.col-name { text-align: left; min-width: 160px; }
+.off-table td input[type="number"] { width: 54px; text-align: center; }
+.off-table td input[type="text"] { width: 100%; }
+.table-toolbar { margin-bottom: 6px; }
+.row-actions { width: 32px; }
+
+.ben-system .item-label {
+  padding: 4px 6px;
+  line-height: 1.6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ben-system .center { text-align: center; }
+
+/* ===== Qty controls (global) ===== */
+.ben-system .qty-field {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 24px;
+}
+.ben-system .qty-field .qty-step {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  border: 1px solid var(--color-border, #bbb);
+  background: var(--color-bg-btn, #eee);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+.ben-system .qty-field .qty-input {
+  width: 40px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  padding: 0 4px;
+  margin: 0;
+  box-sizing: border-box;
+  appearance: textfield;
+}
+/* remove WebKit number spinners */
+.ben-system .qty-field .qty-input::-webkit-outer-spin-button,
+.ben-system .qty-field .qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ================================
+   INVENTORY (ACCORDION) LAYOUTS
+   ================================ */
+
+/* remove list indent so first column aligns exactly */
+.item-list { list-style: none; margin: 0; padding: 0; }
+
+/* same flex model for non-grid rows (fallback) */
+.items-header.flexrow,
+.item.flexrow { display: flex; align-items: center; gap: 6px; }
+
+/* ===== Weapons accordion: name ~2/3 width + stat columns ===== */
+.ben-system .inventory-section.weapons .items-header.flexrow,
+.ben-system .inventory-section.weapons .item-list .item.flexrow {
+  display: grid;
+  grid-template-columns:
+    2fr              /* Weapon name (~2/3 of flexible width) */
+    1fr              /* Type (weaponClass) */
+    repeat(7, 34px)  /* PAC, MAC, STR, DEX, CON, INT, CHA */
+    96px             /* Qty */
+    72px             /* Equipped */
+    80px             /* Value */
+    28px;            /* Trash */
+  align-items: center;
+  column-gap: 8px;
+}
+.ben-system .inventory-section.weapons .items-header .item-name,
+.ben-system .inventory-section.weapons .items-header .item-detail,
+.ben-system .inventory-section.weapons .items-header .item-controls,
+.ben-system .inventory-section.weapons .item-list .item .item-name,
+.ben-system .inventory-section.weapons .item-list .item .item-detail,
+.ben-system .inventory-section.weapons .item-list .item .item-controls {
+  flex: initial !important;
+  min-width: 0;
+}
+
+/* ===== Armour accordion: flexible single-line grid ===== */
+.ben-system .inventory-section.armour .items-header.flexrow,
+.ben-system .inventory-section.armour .item-list .item.flexrow {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 2fr)    /* Armour name (flex & shrink) */
+    minmax(0, 1fr)    /* Type (flex & shrink) */
+    minmax(0, 1fr)    /* Slot (flex & shrink) */
+    minmax(0, 1fr)    /* Sub-Slot (flex & shrink) */
+    repeat(7, minmax(28px, 34px)) /* PAC..CHA (compact, can shrink a bit) */
+    96px               /* Qty */
+    72px               /* Equipped */
+    80px               /* Value */
+    28px;              /* Trash */
+  align-items: center;
+  column-gap: 8px;
+}
+.ben-system .inventory-section.armour .items-header .item-name,
+.ben-system .inventory-section.armour .items-header .item-detail,
+.ben-system .inventory-section.armour .items-header .item-controls,
+.ben-system .inventory-section.armour .item-list .item .item-name,
+.ben-system .inventory-section.armour .item-list .item .item-detail,
+.ben-system .inventory-section.armour .item-list .item .item-controls {
+  flex: initial !important;
+  min-width: 0;
+}
+.ben-system .inventory-section.armour .item-detail .item-label,
+.ben-system .inventory-section.armour .item-detail input.num {
+  text-align: center;
+  padding: 0 6px;
+  line-height: 22px;
+}
+
+/* ===== Equipped-by-region accordion (unchanged aside from selector) ===== */
+.ben-system .equipped-by-region .items-header.flexrow,
+.ben-system .equipped-by-region .item-list .item.flexrow {
+  display: grid;
+  grid-template-columns:
+    minmax(340px, 2fr) /* Name */
+    minmax(120px, 1fr) /* Type or Sub-Slot */
+    repeat(7, 34px)    /* PAC..CHA */
+    72px               /* Equipped */
+    28px;              /* Delete */
+  align-items: center;
+  column-gap: 8px;
+}
+/* keep name cells vertically centered even with wrapping */
+.ben-system .equipped-by-region .item .item-name { display:flex; align-items:center; }
+
+/* Accordion shell */
+.ben-system .equipped-by-region .eq-group {
+  margin: .5rem 0 1rem;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 6px;
+  background: rgba(0,0,0,.03);
+}
+.ben-system .equipped-by-region .eq-summary {
+  display:flex; align-items:center; gap:.75rem;
+  padding:.35rem .6rem;
+  cursor:pointer; user-select:none;
+  font-weight:600;
+}
+.ben-system .equipped-by-region .eq-name { flex:0 0 auto; }
+.ben-system .equipped-by-region .eq-badge {
+  background: rgba(0,0,0,.12);
+  border-radius: 999px;
+  padding: .05rem .5rem;
+  font-weight:700;
+}
+.ben-system .equipped-by-region .eq-totals { margin-left:auto; opacity:.85; font-weight:500; }
+.ben-system .equipped-by-region .eq-summary { flex-wrap: wrap; gap:.5rem .75rem; }
+.ben-system .equipped-by-region .eq-badge { margin-left:.25rem; }
+.ben-system .equipped-by-region .eq-subs { width:100%; opacity:.9; }
+.ben-system .equipped-by-region .eq-sub { white-space: nowrap; }
+
+/* ===== Equipped totals bar ===== */
+.ben-system .equip-totals {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(90px, 1fr));
+  gap: 10px;
+  margin: .25rem 0 .75rem;
+}
+
+.ben-system .equip-chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.35));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.5),
+    0 1px 2px rgba(0,0,0,.06);
+  font-weight: 600;
+}
+
+.ben-system .equip-chip .lab {
+  opacity: .85;
+  letter-spacing: .02em;
+}
+
+.ben-system .equip-chip .val {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== Stat Totals (statstotals.hbs) ===== */
+
+.ben-system .stat-total {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: .25rem 0 1rem;
+}
+
+.ben-system .stat-total .resource-label {
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.ben-system .stat-total .stat-total-value {
+  font-weight: 800;
+  font-size: 1.15rem;
+  padding: .25rem .6rem;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,.25));
+  border: 1px solid rgba(0,0,0,.15);
+  min-width: 64px;
+  text-align: center;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+}
+
+/* Card-like look for each stat */
+.ben-system .resources.grid.grid-5col {
+  gap: 12px;
+}
+
+.ben-system .resources.grid.grid-5col .resource {
+  background: rgba(0,0,0,.04);
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+.ben-system .resources.grid.grid-5col .resource .resource-label {
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  font-size: .8rem;
+  opacity: .9;
+}
+
+.ben-system .resources.grid.grid-5col .resource .resource-content {
+  justify-content: center;
+  margin-top: 6px;
+}
+
+/* The number “pill” */
+.ben-system .resources.grid.grid-5col .resource .value {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  padding: 6px 12px;
+  min-width: 64px;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.15);
+  background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.35));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.6),
+    0 1px 2px rgba(0,0,0,.08);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+/* small lift on hover for a bit of life */
+.ben-system .resources.grid.grid-5col .resource:hover .value {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.6),
+    0 2px 6px rgba(0,0,0,.18);
+}
+
+/* Responsive: collapse to 3/2 columns on narrow sheets */
+@media (max-width: 920px) {
+  .ben-system .resources.grid.grid-5col {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .ben-system .resources.grid.grid-5col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+/* Make the stat total look like a neat clickable pill */
+.ben-system .resources.grid.grid-5col .resource .value.stat-roll {
+  appearance: none;
+  border: 1px solid rgba(0,0,0,.15);
+  background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.35));
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 1.15rem;
+  padding: 6px 12px;
+  min-width: 64px;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 1px 2px rgba(0,0,0,.08);
+}
+.ben-system .resources.grid.grid-5col .resource .value.stat-roll:hover {
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 2px 6px rgba(0,0,0,.18);
+}
+.ben-system .resources.grid.grid-5col .resource .value.stat-roll:active {
+  transform: translateY(0);
+}
+
+/* Horizontal scroll for wide tables */
+.off-scroll {
+  position: relative;   /* ← important */
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
+/* Table layout */
+.off-scroll .off-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;   /* stable widths */
+  min-width: 1400px;     /* tune as needed */
+}
+
+.off-scroll .off-table th,
+.off-scroll .off-table td {
+  white-space: nowrap;
+  padding: 2px 6px;
+}
+
+/* Explicit widths */
+:root {
+  --off-col-name: 240px;  /* width for Attack Type */
+  --off-col-idx:  44px;   /* width for # */
+}
+
+.off-table .col-name { width: var(--off-col-name); min-width: var(--off-col-name); }
+.off-table .col-idx  { width: var(--off-col-idx);  min-width: var(--off-col-idx);  text-align: center; }
+
+/* Sticky header */
+.off-scroll .off-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: inherit;
+}
+
+/* Sticky first column (Attack Type) */
+.off-scroll .off-table thead th:first-child,
+.off-scroll .off-table tbody td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 4; /* above other cells */
+  background: inherit;
+  /* visual separator so it doesn't look cut off */
+  border-right: 1px solid rgba(0,0,0,0.25);
+  box-shadow: 2px 0 0 rgba(0,0,0,0.08);
+}
+
+/* (Optional) also keep the # column sticky.
+   If you do, uncomment below. The left offset must equal the Attack Type width. */
+/*
+.off-scroll .off-table thead th.col-idx,
+.off-scroll .off-table tbody td.col-idx {
+  position: sticky;
+  left: var(--off-col-name);
+  z-index: 4;
+  background: inherit;
+  border-right: 1px solid rgba(0,0,0,0.25);
+  box-shadow: 2px 0 0 rgba(0,0,0,0.08);
+}
+*/
+
+/* Make disabled inputs look like text and not get cropped */
+.off-table input[disabled] {
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+  opacity: 1;
+  pointer-events: none;
+  text-align: left;
+}
+
+/* sizing vars you can tweak */
+:root {
+  --off-col-name: 240px;   /* Attack Type width (matches your sticky settings) */
+  --off-col-idx:  44px;    /* # column width */
+  --off-th-height: 45px;   /* header strip height to fit diagonals */
+  --off-th-angle: -45deg;  /* rotation angle */
+  --off-th-font:  11px;    /* header font size */
+}
+
+/* keep from the earlier sticky/scroll setup */
+.off-scroll { position: relative; overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+.off-scroll .off-table { border-collapse: separate; border-spacing: 0; table-layout: fixed; min-width: 1400px; }
+.off-table .col-name { width: var(--off-col-name); min-width: var(--off-col-name); }
+.off-table .col-idx  { width: var(--off-col-idx);  min-width: var(--off-col-idx);  text-align: center; }
+
+/* sticky header strip */
+.off-scroll .off-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: inherit;
+  height: var(--off-th-height);
+  vertical-align: bottom;
+  overflow: visible; /* so rotated spans can hang out */
+  text-align: center;
+  padding: 0 6px;
+}
+
+/* diagonal label */
+.off-scroll .off-table thead th .th-diag {
+  display: inline-block;
+  transform: rotate(var(--off-th-angle));
+  transform-origin: bottom left;
+  white-space: nowrap;
+  line-height: 1;
+  font-size: var(--off-th-font);
+  /* fine tune vertical placement so the tip sits near the bottom border */
+  translate: 0 6px;
+}
+
+/* sticky first column (unchanged) */
+.off-scroll .off-table thead th:first-child,
+.off-scroll .off-table tbody td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 4;
+  background: inherit;
+  border-right: 1px solid rgba(0,0,0,0.25);
+  box-shadow: 2px 0 0 rgba(0,0,0,0.08);
+}
+
+/* optional: also keep the # column sticky */
+.off-scroll .off-table thead th.col-idx,
+.off-scroll .off-table tbody td.col-idx {
+  position: sticky;
+  left: var(--off-col-name);
+  z-index: 4;
+  background: inherit;
+  border-right: 1px solid rgba(0,0,0,0.25);
+  box-shadow: 2px 0 0 rgba(0,0,0,0.08);
+}
+
+.items-header { font-weight: 600; }
+.item-accordion > summary { list-style: none; cursor: pointer; }
+.item-accordion > summary::-webkit-details-marker { display: none; }
+.item-accordion[open] > summary { background: rgba(0,0,0,0.04); }
+.item .item-detail, .items-header .item-detail { text-align: center; }
+.item .item-name { flex: 2 1 auto; }
+.item.flexrow { display: flex; align-items: center; gap: 6px; }
+.item-list .item { margin: 0; border-bottom: 1px solid var(--color-border, #bbb3); }
+.accordion-body { padding: 6px 8px 10px 8px; }
+.grid.two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; }
+.qty-field { display: flex; align-items: center; gap: 4px; }
+.qty-field .qty-step { width: 24px; height: 24px; line-height: 22px; }
+
+/* remove list indent so first column aligns exactly */
+.item-list { list-style: none; margin: 0; padding: 0; }
+
+/* same flex model for headers and rows (fallback) */
+.items-header.flexrow,
+.item.flexrow { display: flex; align-items: center; gap: 6px; }
+
+/* column widths — generic fallback (not used by grids above) */
+.col-name { flex: 2 1 260px; }        /* long names */
+.col-type { flex: 0 0 120px; }
+.col-slot { flex: 0 0 100px; }
+.col-sub  { flex: 0 0 120px; }
+.col-pac, .col-mac,
+.col-str, .col-dex, .col-con, .col-int, .col-cha { flex: 0 0 48px; text-align: center; }
+.col-qty  { flex: 0 0 120px; }
+.col-eq   { flex: 0 0 80px;  text-align: center; }
+.col-val  { flex: 0 0 80px;  text-align: center; }
+.col-ctrl { flex: 0 0 36px;  text-align: right; }
+
+/* make header text alignment mirror rows */
+.items-header .col-qty,
+.items-header .col-eq,
+.items-header .col-val,
+.items-header .col-pac, .items-header .col-mac,
+.items-header .col-str, .items-header .col-dex, .items-header .col-con, .items-header .col-int, .items-header .col-cha {
+  text-align: center;
+}
+
+/* qty control layout */
+.qty-field { display: flex; align-items: center; gap: 4px; }
+.qty-field .qty-step { width: 24px; height: 24px; line-height: 22px; }
+
+/* optional: accordion header style */
+.inventory-section > summary.section-title {
+  cursor: pointer; font-weight: 600; margin: 4px 0;
+}
+/* Equipped tab: weapons grid inside .equipped-by-region */
+.ben-system .equipped-by-region .weapons .items-header.flexrow,
+.ben-system .equipped-by-region .weapons .item-list .item.flexrow {
+  grid-template-columns:
+    minmax(340px, 2fr)
+    minmax(120px, 1fr)
+    repeat(7, 34px)
+    72px
+    28px;
+}
+
+.stat-table .stepper[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* now the <td> stays a table-cell; only the inner div is flex */
+.stat-table .with-steppers {
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+/* Layout: put search to the right of +New, fixed width, no wrap */
+.ben-inventory--achievements .ben-section-header {
+  gap: 0.5rem;
+}
+.ben-inventory--achievements .ben-section-header .achv-search {
+  flex: 0 0 240px;
+  max-width: 240px;
+  margin-left: 0.25rem;
+}
+
+/* Table sizing + visuals */
+.ben-inventory--achievements .items-table .col-name   { width: 48%; }
+.ben-inventory--achievements .items-table .col-tag    { width: 18%; }
+.ben-inventory--achievements .items-table .col-reward { width: 24%; }
+.ben-inventory--achievements .items-table .col-actions{ width: 10%; white-space: nowrap; }
+
+.ben-inventory--achievements .achv-name {
+  display:flex; align-items:center; gap:0.5rem;
+}
+.ben-inventory--achievements .achv-name .item-image img {
+  width:24px; height:24px; border:0; object-fit:cover;
+}
+.ben-inventory--achievements tr.achv-row { cursor:pointer; }
+.ben-inventory--achievements .item-control.is-disabled {
+  opacity:.4; pointer-events:none; filter:grayscale(1);
+}

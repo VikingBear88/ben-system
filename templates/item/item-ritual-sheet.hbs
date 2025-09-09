@@ -1,0 +1,230 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+  {{!-- HEADER: name + sidebar icon (uses item.img as usual) --}}
+  <header class="sheet-header flexrow">
+    <div class="profile-img">
+      <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    </div>
+
+    <div class="header-fields flexcol">
+      <h1 class="charname">
+        <input name="name" type="text" value="{{item.name}}" placeholder="Race Name"/>
+      </h1>
+    </div>
+  </header>
+
+  {{!-- Tabs --}}
+  <nav class="sheet-tabs">
+    <a class="item" data-tab="description">Description</a>
+    <a class="item" data-tab="effects">Effects</a>
+  </nav>
+
+  <section class="sheet-body">
+
+    {{!-- ===================== DESCRIPTION TAB ===================== --}}
+    <div class="tab" data-tab="description">
+
+      {{!-- DESCRIPTION (rich text) --}}
+      <section class="card block">
+        <h2 class="block-title">Description</h2>
+{{editor
+  enrichedDescription
+  target="system.description"
+  button=true
+  editable=editable
+}}
+      </section>
+
+      <!-- Primary selectors -->
+      <section class="armour-selects">
+        <div class="field">
+          <label>Type</label>
+          <select name="system.armourType">
+            {{selectOptions armourTypeOptions selected=system.armourType}}
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Body Region</label>
+          <select name="system.bodyRegion" class="js-body-region">
+            {{selectOptions bodyRegionOptions selected=system.bodyRegion}}
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Sub-Region</label>
+          <select name="system.subRegion" class="js-sub-region">
+            {{selectOptions subRegionOptions selected=system.subRegion}}
+          </select>
+        </div>
+      </section>
+
+      <section class="armour-stats">
+        <div class="row">
+          <label>PAC Bonus</label>
+          <div class="num-cell">
+            <button type="button" class="arm-step dec" data-name="system.pacBonus">−</button>
+            <input type="number" name="system.pacBonus" value="{{system.pacBonus}}" step="1"/>
+            <button type="button" class="arm-step inc" data-name="system.pacBonus">+</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>MAC Bonus</label>
+          <div class="num-cell">
+            <button type="button" class="arm-step dec" data-name="system.macBonus">−</button>
+            <input type="number" name="system.macBonus" value="{{system.macBonus}}" step="1"/>
+            <button type="button" class="arm-step inc" data-name="system.macBonus">+</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>STR Bonus</label>
+          <div class="num-cell">
+            <button type="button" class="arm-step dec" data-name="system.strBonus">−</button>
+            <input type="number" name="system.strBonus" value="{{system.strBonus}}" step="1"/>
+            <button type="button" class="arm-step inc" data-name="system.strBonus">+</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>DEX Bonus</label>
+          <div class="num-cell">
+            <button type="button" class="arm-step dec" data-name="system.dexBonus">−</button>
+            <input type="number" name="system.dexBonus" value="{{system.dexBonus}}" step="1"/>
+            <button type="button" class="arm-step inc" data-name="system.dexBonus">+</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>CON Bonus</label>
+          <div class="num-cell">
+            <button type="button" class="arm-step dec" data-name="system.conBonus">−</button>
+            <input type="number" name="system.conBonus" value="{{system.conBonus}}" step="1"/>
+            <button type="button" class="arm-step inc" data-name="system.conBonus">+</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>INT Bonus</label>
+          <div class="num-cell">
+            <button type="button" class="arm-step dec" data-name="system.intBonus">−</button>
+            <input type="number" name="system.intBonus" value="{{system.intBonus}}" step="1"/>
+            <button type="button" class="arm-step inc" data-name="system.intBonus">+</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>CHA Bonus</label>
+          <div class="num-cell">
+            <button type="button" class="arm-step dec" data-name="system.chaBonus">−</button>
+            <input type="number" name="system.chaBonus" value="{{system.chaBonus}}" step="1"/>
+            <button type="button" class="arm-step inc" data-name="system.chaBonus">+</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>Equipped</label>
+          <div class="num-cell">
+            <input type="checkbox" name="system.equipped" {{checked system.equipped}}/>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>Quantity</label>
+          <div class="num-cell">
+            <button type="button" class="arm-step dec" data-name="system.quantity">−</button>
+            <input type="number" name="system.quantity" value="{{system.quantity}}" step="1" min="0"/>
+            <button type="button" class="arm-step inc" data-name="system.quantity">+</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>Value</label>
+          <div class="num-cell">
+            <button type="button" class="arm-step dec" data-name="system.value">−</button>
+            <input type="number" name="system.value" value="{{system.value}}" step="1" min="0"/>
+            <button type="button" class="arm-step inc" data-name="system.value">+</button>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    {{!-- ======================= EFFECTS TAB ======================= --}}
+    <div class="tab effects" data-tab="effects">
+      <header class="effect-header flexrow">
+        <h3>Active Effects</h3>
+        <a class="effect-control" data-action="create" title="Create Effect"><i class="fas fa-plus"></i></a>
+      </header>
+
+      {{#each effects as |section sid|}}
+        <h4 class="effect-section">{{section.label}}</h4>
+        <ol class="effects-list">
+          {{#each section.effects as |effect|}}
+            <li class="effect flexrow" data-effect-id="{{effect._id}}">
+              <img class="effect-icon" src="{{effect.icon}}"/>
+              <div class="effect-title">
+                <h5>{{effect.label}}</h5>
+                <div class="effect-origin">{{effect.originName}}</div>
+              </div>
+              <div class="effect-controls">
+                <a class="effect-control" data-action="toggle" title="Enable/Disable">
+                  <i class="fas fa-power-off {{#unless effect.disabled}}active{{/unless}}"></i>
+                </a>
+                <a class="effect-control" data-action="edit" title="Edit"><i class="fas fa-edit"></i></a>
+                <a class="effect-control" data-action="delete" title="Delete"><i class="fas fa-trash"></i></a>
+              </div>
+            </li>
+          {{/each}}
+        </ol>
+      {{/each}}
+    </div>
+
+  </section>
+</form>
+
+<style>
+  .ben-item--armour { display: grid; gap: .75rem; }
+
+  .armour-header {
+    display: grid; grid-template-columns: 72px 1fr; gap: .75rem; align-items: start;
+  }
+  .profile-img img {
+    width: 64px; height: 64px; object-fit: cover;
+    border: 1px solid rgba(0,0,0,.25); border-radius: 4px; cursor: pointer;
+  }
+
+  .desc label { font-weight: 600; display: block; margin-bottom: 4px; }
+
+  .armour-selects {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: .5rem;
+  }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field label { font-weight: 600; text-align: center; }
+  .field select { padding: 4px 6px; }
+
+  .armour-stats { display: grid; gap: .5rem; }
+  .armour-stats .row {
+    display: grid; grid-template-columns: 200px 1fr;
+    align-items: center; gap: .5rem;
+  }
+  .armour-stats .row label { font-weight: 600; text-align: center; }
+
+  .num-cell { display: inline-flex; align-items: center; gap: 8px; }
+  .num-cell input[type=number] { width: 120px; text-align: center; }
+  .arm-step {
+    width: 28px; height: 28px;
+    border: 1px solid #888; background: #f2f2f2; cursor: pointer; line-height: 1;
+    display: inline-flex; align-items: center; justify-content: center; padding: 0;
+  }
+  .arm-step:hover { background: #e6e6e6; }
+
+  /* Effects tab styles (optional) */
+  .effects-list { list-style: none; margin: 0; padding: 0; }
+  .effects-list .effect { align-items: center; gap: .5rem; padding: .25rem 0; }
+  .effect-icon { width: 24px; height: 24px; border: 1px solid #999; }
+  .effect-title h5 { margin: 0; }
+  .effect-controls a { margin-left: .25rem; }
+  .effect-header { align-items: center; justify-content: space-between; }
+</style>

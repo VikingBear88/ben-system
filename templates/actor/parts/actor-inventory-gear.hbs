@@ -1,0 +1,77 @@
+<!-- EQUIPPED -->
+<h3>Equipped Gear</h3>
+<table class="items gear-table gear-equipped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th class="num">Qty</th>
+      <th class="num">Value</th>
+      <th class="num">Equipped</th>
+      <th class="num">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each gearEquipped as |it|}}
+      <tr class="item" data-item-id="{{it._id}}">
+        <td>
+          <div class="item-name flexrow">
+            <img class="item-image" src="{{it.img}}" width="24" height="24"/>
+            <h4>{{it.name}}</h4>
+          </div>
+        </td>
+        <td class="num">{{it.system.quantity}}</td>
+        <td class="num">{{it.system.value}}</td>
+        <td class="num">
+          <input type="checkbox" class="gear-equip" data-item-id="{{it._id}}" {{checked it.system.equipped}} />
+        </td>
+        <td class="num">
+          <a class="item-edit"   title="Edit"><i class="fas fa-edit"></i></a>
+          <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+        </td>
+      </tr>
+    {{/each}}
+
+    {{#unless gearEquipped.length}}
+      <tr><td colspan="5" class="notes">No gear equipped.</td></tr>
+    {{/unless}}
+  </tbody>
+</table>
+
+<!-- UNEQUIPPED -->
+<h3>Unequipped Gear</h3>
+<table class="items gear-table gear-unequipped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th class="num">Qty</th>
+      <th class="num">Value</th>
+      <th class="num">Equipped</th>
+      <th class="num">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each gearUnequipped as |it|}}
+      <tr class="item" data-item-id="{{it._id}}">
+        <td>
+          <div class="item-name flexrow">
+            <img class="item-image" src="{{it.img}}" width="24" height="24"/>
+            <h4>{{it.name}}</h4>
+          </div>
+        </td>
+        <td class="num">{{it.system.quantity}}</td>
+        <td class="num">{{it.system.value}}</td>
+        <td class="num">
+          <input type="checkbox" class="gear-equip" data-item-id="{{it._id}}" {{checked it.system.equipped}} />
+        </td>
+        <td class="num">
+          <a class="item-edit"   title="Edit"><i class="fas fa-edit"></i></a>
+          <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+        </td>
+      </tr>
+    {{/each}}
+
+    {{#unless gearUnequipped.length}}
+      <tr><td colspan="5" class="notes">No unequipped gear.</td></tr>
+    {{/unless}}
+  </tbody>
+</table>

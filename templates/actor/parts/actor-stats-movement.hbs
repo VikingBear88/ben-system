@@ -1,0 +1,83 @@
+{{!-- templates/actor/parts/actor-stats-movement.hbs --}}
+
+<section class="tab-inner pad-top">
+
+  <h2 class="section-title">Movement</h2>
+
+  {{!-- ====================== WALKING ====================== --}}
+  <div class="subsection">
+    <h3>Walking</h3>
+    <table class="ben-table">
+      <thead>
+        <tr>
+          <th>Race Walking Level</th>
+          <th>Race Base Speed</th>
+          <th>DEX Boost</th>
+          <th>Benefit Bonus</th>
+          <th>Walk Speed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            {{#if system.movement.walk.level}}{{system.movement.walk.level}}{{else}}0{{/if}}
+          </td>
+          <td>
+            {{#if system.movement.walk.base}}{{system.movement.walk.base}}{{else}}0{{/if}}
+          </td>
+          <td>
+            {{#if system.movement.walk.dexBoost}}{{system.movement.walk.dexBoost}}{{else}}0{{/if}}
+          </td>
+          <td>
+            <input type="number"
+                   name="system.movement.walk.benefit"
+                   value="{{#if system.movement.walk.benefit}}{{system.movement.walk.benefit}}{{else}}0{{/if}}"
+                   data-dtype="Number" />
+          </td>
+          <td>
+            {{#if system.movement.walk.total}}{{system.movement.walk.total}}{{else}}0{{/if}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  {{!-- ====================== SWIMMING ====================== --}}
+  <div class="subsection">
+    <h3>Swimming</h3>
+    <table class="ben-table">
+      <thead>
+        <tr>
+          <th>Race Swim Level</th>
+          <th>Race Base Speed</th>
+          <th>DEX Boost</th>
+          <th>Benefit Bonus</th>
+          <th>Swim Speed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            {{#if system.movement.swim.level}}{{system.movement.swim.level}}{{else}}0{{/if}}
+          </td>
+          <td>
+            {{#if system.movement.swim.base}}{{system.movement.swim.base}}{{else}}0{{/if}}
+          </td>
+          <td>
+            {{#if system.movement.swim.dexBoost}}{{system.movement.swim.dexBoost}}{{else}}0{{/if}}
+          </td>
+          <td>
+            <input type="number"
+                   name="system.movement.swim.benefit"
+                   value="{{#if system.movement.swim.benefit}}{{system.movement.swim.benefit}}{{else}}0{{/if}}"
+                   data-dtype="Number" />
+          </td>
+          <td>
+            {{#if system.movement.swim.total}}{{system.movement.swim.total}}{{else}}0{{/if}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>

@@ -1,0 +1,64 @@
+{{!-- Sub Navigation for Stats --}}
+<nav class="inventory-tabs tabs" data-group="inventory">
+  {{!-- Default tab is specified in actor-sheet.mjs --}}
+  <a class="item" data-tab="currency">Currency</a>
+  <a class="item" data-tab="lootboxes">Loot Boxes</a>
+  <a class="item" data-tab="achievements">Achievements</a>
+  <a class="item" data-tab="consumables">Consumables</a>
+  <a class="item" data-tab="potions">Potions</a>
+  <a class="item" data-tab="equippables">Equippables</a>
+  <a class="item" data-tab="gear">Gear</a>
+  <a class="item" data-tab="crafting">Crafting</a>
+  <a class="item" data-tab="garbage">Worthless Garbage</a>
+</nav>
+
+{{!-- Sub Tab Container --}}
+<section class="inventory-body">
+
+  {{!-- Currency Tab --}}
+  <div class="tab currency" data-group="inventory" data-tab="currency">
+    {{> "systems/ben-system/templates/actor/parts/actor-inventory-currency.hbs"}}
+  </div>
+
+  {{!-- Loot Boxes Tab --}}
+  <div class="tab lootboxes" data-group="inventory" data-tab="lootboxes">
+    {{> "systems/ben-system/templates/actor/parts/actor-inventory-lootboxes.hbs"}}
+  </div>
+
+  {{!-- Achievements Tab --}}
+  <div class="tab achievements" data-group="inventory" data-tab="achievements">
+    {{> "systems/ben-system/templates/actor/parts/actor-inventory-achievements.hbs"}}
+  </div>
+
+  {{!-- Consumeables Tab --}}
+  <div class="tab consumables" data-group="inventory" data-tab="consumables">
+    {{> "systems/ben-system/templates/actor/parts/actor-inventory-consumables.hbs"}}
+  </div>
+
+      {{!-- Equippables Tab --}}
+  <div class="tab equippables" data-group="inventory" data-tab="equippables">
+    {{> "systems/ben-system/templates/actor/parts/actor-inventory-equippables.hbs"}}
+  </div>
+
+    {{!-- Potions Tab --}}
+  <div class="tab potions" data-group="inventory" data-tab="potions">
+    {{> "systems/ben-system/templates/actor/parts/actor-inventory-potions.hbs"}}
+  </div>
+
+    {{!-- Gear Tab --}}
+  <div class="tab gear" data-group="inventory" data-tab="gear">
+    {{> "systems/ben-system/templates/actor/parts/actor-inventory-gear.hbs"}}
+  </div>
+
+  {{!-- Crafting Tab --}}
+  <div class="tab crafting" data-group="inventory" data-tab="crafting">
+    {{> "systems/ben-system/templates/actor/parts/actor-inventory-crafting.hbs"}}
+  </div>
+
+  {{!-- Misc Stats Tab --}}
+  <div class="tab garbage" data-group="inventory" data-tab="garbage">
+    {{> "systems/ben-system/templates/actor/parts/actor-inventory-garbage.hbs"}}
+  </div>
+
+
+</section>

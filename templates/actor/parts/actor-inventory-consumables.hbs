@@ -1,0 +1,30 @@
+<section class="ben-food-inventory">
+  <ol class="items-list">
+    <li class="items-header flexrow">
+      <div class="item-name">Name</div>
+      <div class="item-detail w-type">Type</div>
+      <div class="item-detail w-cal num">Cal</div>
+      <div class="item-detail w-qty num">Qty</div>
+      <div class="item-detail w-val num">Value</div>
+      <div class="item-controls">Action</div>
+    </li>
+
+    {{#each food as |it|}}
+      <li class="item flexrow" data-item-id="{{it._id}}">
+        <div class="item-name flexrow">
+          <img class="item-image" src="{{it.img}}" width="24" height="24" />
+          <h4 class="item-open">{{it.name}}</h4>
+        </div>
+        <div class="item-detail w-type">{{it.system.foodType}}</div>
+        <div class="item-detail w-cal num">{{it.system.calories}}</div>
+        <div class="item-detail w-qty num">{{it.system.quantity}}</div>
+        <div class="item-detail w-val num">{{it.system.value}}</div>
+        <div class="item-controls">
+          <a class="item-control food-consume" data-item-id="{{it._id}}"><i class="fas fa-utensils"></i> Consume</a>
+          <a class="item-control item-edit"   title="Edit"><i class="fas fa-edit"></i></a>
+          <a class="item-control item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+        </div>
+      </li>
+    {{/each}}
+  </ol>
+</section>

@@ -1,0 +1,43 @@
+<nav class="sheet-tabs stats-tabs" data-group="abilities">
+  <a class="item" data-tab="skills">Skills</a>
+  <a class="item" data-tab="spells">Spells</a>
+</nav>
+
+<section class="sheet-body">
+  <div class="tab" data-group="abilities" data-tab="skills">
+    {{> "systems/ben-system/templates/actor/parts/ability-section.hbs" title="Charisma" items=abilities.skills.charisma}}
+    {{> "systems/ben-system/templates/actor/parts/ability-section.hbs" title="Crafting" items=abilities.skills.crafting}}
+    {{> "systems/ben-system/templates/actor/parts/ability-section.hbs" title="Combat" items=abilities.skills.combat}}
+    {{> "systems/ben-system/templates/actor/parts/ability-section.hbs" title="Movement" items=abilities.skills.movement}}
+    {{> "systems/ben-system/templates/actor/parts/ability-section.hbs" title="Perception" items=abilities.skills.perception}}
+    {{> "systems/ben-system/templates/actor/parts/ability-section.hbs" title="Stealth" items=abilities.skills.stealth}}
+  </div>
+
+  <div class="tab" data-group="abilities" data-tab="spells">
+    {{> "systems/ben-system/templates/actor/parts/ability-section.hbs" title="Spells" items=abilities.spells.spell}}
+    {{> "systems/ben-system/templates/actor/parts/ability-section.hbs" title="Rituals" items=abilities.spells.ritual}}
+    {{> "systems/ben-system/templates/actor/parts/ability-section.hbs" title="Music" items=abilities.spells.music}}
+  </div>
+</section>
+<section class="ability-accordion">
+  <h3 class="accordion-toggle">{{title}} ({{items.length}})</h3>
+  <div class="accordion-body">
+    <table class="ben-table">
+      <thead><tr><th>Name</th><th>Lvl</th><th>Actions</th><th>Cooldown</th><th></th></tr></thead>
+      <tbody>
+        {{#each items as |it|}}
+        <tr data-item-id="{{it.id}}">
+          <td>{{it.name}}</td>
+          <td>{{it.system.level.base}} (eff {{add it.system.level.base it.system.level.bonus}})</td>
+          <td>{{it.system.actions.qty}} × {{it.system.actions.type}}</td>
+          <td>{{it.system.cooldown.turns}}</td>
+          <td class="text-right">
+            <a class="ability-use"><i class="fa-solid fa-bolt"></i> Use</a>
+            <a class="ability-edit"><i class="fa-regular fa-pen-to-square"></i></a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>

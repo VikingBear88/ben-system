@@ -1,0 +1,190 @@
+{
+  "Actor": {
+    "types": [
+      "character",
+      "npc",
+      "hazard",
+      "loot",
+      "familiar",
+      "pet",
+      "minion",
+      "party",
+      "vehicle",
+      "army"
+    ],
+    "templates": {
+      "base": {
+        "health": { "value": 10, "min": 0, "max": 10 },
+        "temp": { "value": 5, "min": 0 },
+        "mana": { "value": 10, "min": 0, "max": 10 },
+        "nft": { "value": 10, "min": 0 },
+        "walkspeed": { "value": 30, "min": 0 },
+        "swimspeed": { "value": 30, "min": 0 },
+        "pac": { "value": 30, "min": 0 },
+        "mac": { "value": 30, "min": 0 },
+        "xp": { "value": 0 },
+        "biography": "",
+        "defences": {
+          "physical": { "baseDex": 0, "dexSkill": 0, "baseCon": 0, "conSkill": 0, "gear": 0 },
+          "magical": { "baseInt": 0, "intSkill": 0, "baseCha": 0, "chaSkill": 0, "gear": 0 },
+          "health": { "totalCon": 0, "hpMod": 0, "conSkillBonus": 0, "benefit": 0, "gear": 0 }
+        },
+        "movement": {
+          "walk": { "level": 0, "base": 0, "dexBoost": 0, "benefit": 0, "total": 0 },
+          "swim": { "level": 0, "base": 0, "dexBoost": 0, "benefit": 0, "total": 0 }
+        },
+        "miscStats": [
+          { "name": "Determine Value", "level": 1 }
+        ]
+      }
+    },
+    "character": {
+      "templates": ["base"],
+      "attributes": {
+        "level": { "value": 1 },
+        "str": { "value": 0 },
+        "dex": { "value": 0 },
+        "con": { "value": 0 },
+        "int": { "value": 0 },
+        "cha": { "value": 0 },
+        "total": 0
+      },
+      "abilities": {
+        "str": { "value": 10, "level": 0, "gear": 0, "misc": 0, "temp": 0 },
+        "dex": { "value": 10, "level": 0, "gear": 0, "misc": 0, "temp": 0 },
+        "con": { "value": 10, "level": 0, "gear": 0, "misc": 0, "temp": 0 },
+        "int": { "value": 10, "level": 0, "gear": 0, "misc": 0, "temp": 0 },
+        "cha": { "value": 10, "level": 0, "gear": 0, "misc": 0, "temp": 0 }
+      }
+    },
+    "npc": {
+      "templates": ["base"],
+      "cr": 0
+    }
+  },
+
+  "Item": {
+    "types": [
+      "item",
+      "achievement",
+      "armour",
+      "statuseffect",
+      "book",
+      "race",
+      "class",
+      "benefit",
+      "benefitresist",
+      "curse",
+      "lootbox",
+      "weapon",
+      "ammo",
+      "consumable",
+      "potion",
+      "gear",
+      "medical",
+      "transport",
+      "spellbook",
+      "drugs",
+      "currency",
+      "garbage",
+      "componant",
+      "explosive",
+      "magicitem",
+      "scroll",
+      "trap",
+
+      "skillCharisma",
+      "skillCrafting",
+      "skillCombat",
+      "skillMovement",
+      "skillPerception",
+      "skillStealth",
+
+      "spell",
+      "ritual",
+      "music"
+    ],
+
+    "templates": {
+      "base": {
+        "system": {
+          "description": ""
+        }
+      },
+
+      "abilityBase": {
+        "system": {
+          "description": "",
+          "level":   { "base": 1, "bonus": 0, "unlock20": false, "max": 20 },
+          "progress":{ "uses": 0, "initialUses": 0, "factor": 1, "flat": 0 },
+          "actions": { "type": "standard", "qty": 1 },
+          "cooldown":{"turns": 0 },
+          "prereqs": [],
+          "unlocks": [],
+          "tags": ""
+        }
+      },
+
+      "skillBase": {
+        "system": {
+          "skill": { "category": "General", "combat": false }
+        }
+      },
+
+      "spellBase": {
+        "system": {
+          "spell": { "manaCost": 0, "source": "Radiant", "vs": "MAC" }
+        }
+      }
+    },
+
+
+    "item":        { "templates": ["base"], "system": {} },
+    "achievement": { "templates": ["base"], "system": {} },
+    "armour":      { "templates": ["base"], "system": { "equipped": false } },
+    "statuseffect":{ "templates": ["base"], "system": {} },
+    "book":        { "templates": ["base"], "system": {} },
+    "race":        { "templates": ["base"], "system": {} },
+    "class":       { "templates": ["base"], "system": {} },
+    "benefit":     { "templates": ["base"], "system": {} },
+    "benefitresist": { "templates": ["base"], "system": {} },
+    "curse":       { "templates": ["base"], "system": {} },
+    "lootbox":     { "templates": ["base"], "system": {} },
+    "weapon":      { "templates": ["base"], "system": {} },
+    "ammo":        { "templates": ["base"], "system": {} },
+    "consumable":  { "templates": ["base"], "system": {} },
+    "potion":      { "templates": ["base"], "system": {} },
+    "gear":        { "templates": ["base"], "system": {} },
+    "medical":     { "templates": ["base"], "system": {} },
+    "transport":   { "templates": ["base"], "system": {} },
+    "spellbook":   { "templates": ["base"], "system": {} },
+    "drugs":       { "templates": ["base"], "system": {} },
+    "currency":    { "templates": ["base"], "system": {} },
+    "garbage":     { "templates": ["base"], "system": {} },
+    "componant":   { "templates": ["base"], "system": {} },
+    "explosive":   { "templates": ["base"], "system": {} },
+    "magicitem":   { "templates": ["base"], "system": {} },
+    "scroll":      { "templates": ["base"], "system": {} },
+    "trap":        { "templates": ["base"], "system": {} },
+
+
+
+    "skillCharisma":   { "templates": ["base","abilityBase","skillBase"], "system": { "skill": { "category": "Charisma"   } } },
+    "skillCrafting":   { "templates": ["base","abilityBase","skillBase"], "system": { "skill": { "category": "Crafting"   } } },
+    "skillMovement":   { "templates": ["base","abilityBase","skillBase"], "system": { "skill": { "category": "Movement"   } } },
+    "skillPerception": { "templates": ["base","abilityBase","skillBase"], "system": { "skill": { "category": "Perception" } } },
+    "skillStealth":    { "templates": ["base","abilityBase","skillBase"], "system": { "skill": { "category": "Stealth"    } } },
+
+    "skillCombat": {
+      "templates": ["base","abilityBase","skillBase"],
+      "system": {
+        "skill":  { "category": "Combat", "combat": true },
+        "combat": { "weaponType": "ThrownAmmo", "damageType": "none", "hitMod": 0 }
+      }
+    },
+
+    "spell":  { "templates": ["base","abilityBase","spellBase"] },
+    "ritual": { "templates": ["base","abilityBase","spellBase"] },
+    "music":  { "templates": ["base","abilityBase","spellBase"] }
+  }
+}

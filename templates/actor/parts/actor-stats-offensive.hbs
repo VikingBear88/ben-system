@@ -1,0 +1,161 @@
+
+<!-- Damage Preview (Physical & Magic) -->
+<table class="ben-table">
+  <thead>
+    <tr>
+      <th colspan="5">Physical</th>
+    </tr>
+    <tr>
+      <th>Damage Stat</th>
+      <th>Damage Stat Level</th>
+      <th>Number of Dice</th>
+      <th>Damage Dice</th>
+      <th>Roll Damage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{system.offense.damage.physical.stat}}</td>
+      <td>{{system.offense.damage.physical.level}}</td>
+      <td>{{system.offense.damage.physical.ndice}}</td>
+      <td>{{system.offense.damage.physical.die}}</td>
+      <td>
+        <a class="roll-damage"
+           data-formula="{{system.offense.damage.physical.ndice}}d{{system.offense.damage.physical.die}}"
+           data-label="Physical Damage">Roll</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="ben-table" style="margin-top:8px;">
+  <thead>
+    <tr>
+      <th colspan="5">Magic</th>
+    </tr>
+    <tr>
+      <th>Damage Stat</th>
+      <th>Damage Stat Level</th>
+      <th>Number of Dice</th>
+      <th>Damage Dice</th>
+      <th>Roll Damage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{system.offense.damage.magical.stat}}</td>
+      <td>{{system.offense.damage.magical.level}}</td>
+      <td>{{system.offense.damage.magical.ndice}}</td>
+      <td>{{system.offense.damage.magical.die}}</td>
+      <td>
+        <a class="roll-damage"
+           data-formula="{{system.offense.damage.magical.ndice}}d{{system.offense.damage.magical.die}}"
+           data-label="Magic Damage">Roll</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<section class="tab stats-body" data-group="stats" data-tab="offensive">
+
+  <div class="table-toolbar flexrow">
+    <h3 class="section-title">Offensive</h3>
+    <div class="flex-spacer"></div>
+    <a class="button off-add-row" title="Add Attack Row"><i class="fas fa-plus"></i> Add Row</a>
+  </div>
+<div class="off-scroll">
+  <table class="off-table">
+ <thead>
+  <tr>
+    <th class="col-name">Attack Type</th>
+    <th class="col-mini col-idx">#</th>
+    <th class="col-mini"><span class="th-diag">Range</span></th>
+    <th class="col-mini"><span class="th-diag">Hit Mod</span></th>
+
+    {{!-- Damage types --}}
+    <th><span class="th-diag">Acid</span></th>
+    <th><span class="th-diag">Bludgeoning</span></th>
+    <th><span class="th-diag">Cold</span></th>
+    <th><span class="th-diag">Fire</span></th>
+    <th><span class="th-diag">Force</span></th>
+    <th><span class="th-diag">Lightning</span></th>
+    <th><span class="th-diag">Necrotic</span></th>
+    <th><span class="th-diag">Piercing</span></th>
+    <th><span class="th-diag">Poison</span></th>
+    <th><span class="th-diag">Psychic</span></th>
+    <th><span class="th-diag">Radiant</span></th>
+    <th><span class="th-diag">Slashing</span></th>
+    <th><span class="th-diag">Sonic</span></th>
+
+    {{!-- Status / special chances --}}
+    <th><span class="th-diag">Bleed %</span></th>
+    <th><span class="th-diag">Burn %</span></th>
+    <th><span class="th-diag">Crit %</span></th>
+    <th><span class="th-diag">Mute %</span></th>
+    <th><span class="th-diag">Petrified %</span></th>
+    <th><span class="th-diag">Poison %</span></th>
+    <th><span class="th-diag">Stun %</span></th>
+    <th><span class="th-diag">Pierce %</span></th>
+
+    <th class="col-actions"></th>
+  </tr>
+</thead>
+
+
+    <tbody>
+      {{#each system.offense.attacks as |atk i|}}
+      <tr class="off-row" data-index="{{i}}">
+        <td>
+          <input type="text"
+                 name="system.offense.attacks.{{i}}.name"
+                 value="{{atk.name}}"
+                 placeholder="ThrownAmmo, Bow, HeavySlashing…"/>
+        </td>
+
+        <!-- NEW: index cell -->
+        <td class="col-idx" aria-label="Row Index">{{i}}</td>
+
+        <td><input type="number" step="1" name="system.offense.attacks.{{i}}.range" value="{{atk.range}}"disabled  /></td>
+        <td><input type="number" step="1" name="system.offense.attacks.{{i}}.hit"   value="{{atk.hit}}" disabled   /></td>
+
+        {{!-- Damage numbers --}}
+        <td><input type="number" step="0.01" data-dtype="Number" name="system.offense.attacks.{{i}}.dmg.acid"        value="{{atk.dmg.acid}}" inputmode="decimal" disabled         /></td>
+        <td><input type="number" step="0.01" data-dtype="Number" name="system.offense.attacks.{{i}}.dmg.bludgeoning" value="{{atk.dmg.bludgeoning}}" inputmode="decimal" disabled  /></td>
+        <td><input type="number" step="0.01" data-dtype="Number" name="system.offense.attacks.{{i}}.dmg.cold"        value="{{atk.dmg.cold}}"inputmode="decimal"disabled         /></td>
+        <td><input type="number" step="0.01" data-dtype="Number" name="system.offense.attacks.{{i}}.dmg.fire"        value="{{atk.dmg.fire}}"inputmode="decimal"disabled         /></td>
+        <td><input type="number" step="0.01" data-dtype="Number" name="system.offense.attacks.{{i}}.dmg.force"       value="{{atk.dmg.force}}"inputmode="decimal"disabled        /></td>
+        <td><input type="number" step="0.01" data-dtype="Number" name="system.offense.attacks.{{i}}.dmg.lightning"   value="{{atk.dmg.lightning}}"inputmode="decimal"disabled    /></td>
+        <td><input type="number" step="0.01" data-dtype="Number" name="system.offense.attacks.{{i}}.dmg.necrotic"    value="{{atk.dmg.necrotic}}"inputmode="decimal"disabled     /></td>
+        <td><input type="number" step="0.01" data-dtype="Number" name="system.offense.attacks.{{i}}.dmg.piercing"    value="{{atk.dmg.piercing}}"inputmode="decimal"disabled     /></td>
+        <td><input type="number" step="0.01" data-dtype="Number" name="system.offense.attacks.{{i}}.dmg.poison"      value="{{atk.dmg.poison}}"inputmode="decimal"disabled       /></td>
+        <td><input type="number" step="0.01" data-dtype="Number" name="system.offense.attacks.{{i}}.dmg.psychic"     value="{{atk.dmg.psychic}}"inputmode="decimal"disabled      /></td>
+        <td><input type="number" step="0.01" data-dtype="Number" name="system.offense.attacks.{{i}}.dmg.radiant"     value="{{atk.dmg.radiant}}"inputmode="decimal"disabled      /></td>
+        <td><input type="number" step="0.01" data-dtype="Number" name="system.offense.attacks.{{i}}.dmg.slashing"    value="{{atk.dmg.slashing}}"inputmode="decimal"disabled     /></td>
+        <td><input type="number" step="0.01" data-dtype="Number" name="system.offense.attacks.{{i}}.dmg.sonic"       value="{{atk.dmg.sonic}}"inputmode="decimal"disabled        /></td>
+
+        {{!-- Status chances --}}
+        <td><input type="number" step="1" name="system.offense.attacks.{{i}}.status.bleed"     value="{{atk.status.bleed}}" disabled     /></td>
+        <td><input type="number" step="1" name="system.offense.attacks.{{i}}.status.burn"      value="{{atk.status.burn}}" disabled      /></td>
+        <td><input type="number" step="1" name="system.offense.attacks.{{i}}.status.crit"      value="{{atk.status.crit}}" disabled      /></td>
+        <td><input type="number" step="1" name="system.offense.attacks.{{i}}.status.mute"      value="{{atk.status.mute}}" disabled      /></td>
+        <td><input type="number" step="1" name="system.offense.attacks.{{i}}.status.petrified" value="{{atk.status.petrified}}" disabled  /></td>
+        <td><input type="number" step="1" name="system.offense.attacks.{{i}}.status.poison"    value="{{atk.status.poison}}" disabled    /></td>
+        <td><input type="number" step="1" name="system.offense.attacks.{{i}}.status.stun"      value="{{atk.status.stun}}" disabled      /></td>
+        <td><input type="number" step="1" name="system.offense.attacks.{{i}}.status.pierce"    value="{{atk.status.pierce}}" disabled    /></td>
+
+        <td class="row-actions">
+          <a class="off-del-row" data-index="{{i}}" title="Delete Row"><i class="fas fa-trash"></i></a>
+        </td>
+      </tr>
+      {{/each}}
+
+      {{#unless system.offense.attacks.length}}
+      <tr class="empty">
+        <td colspan="26">No attacks yet. Click <b>Add Row</b> to start.</td>
+      </tr>
+      {{/unless}}
+    </tbody>
+  </table>
+  </div>
+</section>

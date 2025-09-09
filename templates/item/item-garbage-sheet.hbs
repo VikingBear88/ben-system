@@ -1,0 +1,39 @@
+<form class="flexcol" autocomplete="off">
+  <!-- Header: image left, name right -->
+  <header class="sheet-header flexrow items-center">
+    <img class="profile"
+         src="{{item.img}}"
+         data-edit="img"
+         title="{{item.name}}"
+         width="64" height="64" />
+    <h1 class="ben-item-title flexcol">
+      <input name="name" type="text" value="{{item.name}}" placeholder="Name"/>
+    </h1>
+  </header>
+
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="description">Description</a>
+    <a class="item" data-tab="details">Details</a>
+  </nav>
+
+  <section class="sheet-body">
+    <!-- DESCRIPTION -->
+    <div class="tab" data-group="primary" data-tab="description">
+      {{editor system.description target="system.description" button=true owner=owner editable=editable}}
+    </div>
+
+    <!-- DETAILS -->
+    <div class="tab" data-group="primary" data-tab="details">
+      <table class="ben-form-grid">
+        <tr>
+          <th>Quantity</th>
+          <td><input type="number" name="system.quantity" value="{{system.quantity}}" step="1" min="0"/></td>
+        </tr>
+        <tr>
+          <th>Value</th>
+          <td><input type="number" name="system.value" value="{{system.value}}" step="1" min="0"/></td>
+        </tr>
+      </table>
+    </div>
+  </section>
+</form>

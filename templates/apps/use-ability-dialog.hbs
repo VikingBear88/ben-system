@@ -1,0 +1,40 @@
+<form class="flexcol">
+  <div class="form-group">
+    <label>Advantage</label>
+    <input type="checkbox" name="advantage"/>
+  </div>
+  <div class="form-group">
+    <label>Disadvantage</label>
+    <input type="checkbox" name="disadvantage"/>
+  </div>
+  <div class="form-group">
+    <label>Situational Mod</label>
+    <input type="number" name="sitMod" step="1" value="0"/>
+  </div>
+  <div class="form-group">
+    <label>Targets</label>
+    <input type="number" name="targets" step="1" value="1" min="0"/>
+  </div>
+  <div class="form-group">
+    <label>Multi-Use Count</label>
+    <input type="number" name="multiCount" step="1" value="1" min="1"/>
+  </div>
+  <div class="form-group">
+    <label>Increment use counter</label>
+    <input type="checkbox" name="increment" checked/>
+  </div>
+  <div class="form-group">
+    <label>Count as one use (for volleys)</label>
+    <input type="checkbox" name="countAsOne" checked/>
+  </div>
+  {{#if data.isSpell}}
+  <div class="form-group">
+    <label>Ignore mana cost</label>
+    <input type="checkbox" name="ignoreCost"/>
+  </div>
+  {{/if}}
+  <footer class="sheet-footer flexrow">
+    <button type="button" class="cancel">Cancel</button>
+    <button type="button" class="use">Use</button>
+  </footer>
+</form>

@@ -1,0 +1,66 @@
+<section class="currency-panel">
+  <style>
+    .currency-balance {
+      margin: 8px 0 14px 0;
+      display: flex; justify-content: center;
+    }
+    .currency-balance .gold-card {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 10px 16px; border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+      background: linear-gradient(180deg, #2b2b2b, #222);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .gold-card .gold-label {
+      font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: #ffd86b;
+    }
+    .gold-card input.gold-input {
+      width: 140px; text-align: center; font-size: 1.25rem;
+      padding: 6px 10px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2); background: #111; color: #ffd86b;
+    }
+    .currency-list .items-header { font-weight: 600; }
+    .currency-list .num { text-align: right; }
+    .currency-list .item-controls a { margin-left: 6px; }
+  </style>
+
+  <!-- Centered GOLD balance -->
+  <div class="currency-balance">
+    <div class="gold-card">
+      <div class="gold-label">Gold</div>
+      <input class="gold-input" type="number" step="1" min="0"
+             value="{{gold}}"
+             data-path="system.currency.gold"
+             title="Total Gold" />
+    </div>
+  </div>
+
+  <!-- Currency items list -->
+  <ol class="items-list currency-list">
+    <li class="items-header flexrow">
+      <div class="item-name">Name</div>
+      <div class="item-qty num">Qty</div>
+      <div class="item-value num">Value</div>
+      <div class="item-controls">Actions</div>
+    </li>
+
+    {{#each currencyItems as |it|}}
+      <li class="item flexrow" data-item-id="{{it._id}}">
+        <div class="item-name flexrow">
+          <img class="item-image" src="{{it.img}}" width="24" height="24"/>
+          <h4>{{it.name}}</h4>
+        </div>
+        <div class="item-qty   num">{{it.system.quantity}}</div>
+        <div class="item-value num">{{it.system.value}}</div>
+        <div class="item-controls">
+          <a class="item-edit"   title="Edit"><i class="fas fa-edit"></i></a>
+          <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+        </div>
+      </li>
+    {{/each}}
+
+    {{#unless currencyItems.length}}
+      <li class="notes">No currency items.</li>
+    {{/unless}}
+  </ol>
+</section>

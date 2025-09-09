@@ -1,0 +1,193 @@
+<section class="stats-breakdowns">
+
+  {{!-- one-row summary --}}
+  <div class="lp-row">
+    <div><strong>Level Points Earned:</strong> {{system.statsBreakdown.points.earned}}</div>
+    <div><strong>Points Spent:</strong> {{system.statsBreakdown.points.spent}}</div>
+    <div><strong>Points To Spend:</strong> {{system.statsBreakdown.points.remaining}}</div>
+  </div>
+
+  <table class="stat-table">
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th>Base</th>
+        <th>Level Points</th>
+        <th>Gear Bonus</th>
+        <th>Misc Bonus</th>
+        <th>Temp Bonus</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{!-- Strength --}}
+      <tr>
+        <td class="attr"><strong>Strength</strong></td>
+        <td>{{system.statsBreakdown.raceBase.str}}</td>
+        <td>
+          <div class="with-steppers">
+            <button type="button" class="stepper dec" data-path="system.abilities.str.level">−</button>
+            <input type="number" name="system.abilities.str.level" value="{{system.abilities.str.level}}" min="0"/>
+            <button
+              type="button"
+              class="stepper inc"
+              data-path="system.abilities.str.level"
+              {{#unless system.statsBreakdown.points.remaining}}disabled aria-disabled="true"{{/unless}}
+            >+</button>
+          </div>
+        </td>
+        {{!-- READ-ONLY: equipped gear total --}}
+        <td class="gear-total">{{equippedTotals.str}}</td>
+        <td>
+          <div class="with-steppers">
+            <button type="button" class="stepper dec" data-path="system.abilities.str.misc">−</button>
+            <input type="number" name="system.abilities.str.misc" value="{{system.abilities.str.misc}}"/>
+            <button type="button" class="stepper inc" data-path="system.abilities.str.misc">+</button>
+          </div>
+        </td>
+        <td>
+          <div class="with-steppers">
+            <button type="button" class="stepper dec" data-path="system.abilities.str.temp">−</button>
+            <input type="number" name="system.abilities.str.temp" value="{{system.abilities.str.temp}}"/>
+            <button type="button" class="stepper inc" data-path="system.abilities.str.temp">+</button>
+          </div>
+        </td>
+      </tr>
+
+      {{!-- Dexterity --}}
+      <tr>
+        <td class="attr"><strong>Dexterity</strong></td>
+        <td>{{system.statsBreakdown.raceBase.dex}}</td>
+        <td>
+          <div class="with-steppers">
+            <button type="button" class="stepper dec" data-path="system.abilities.dex.level">−</button>
+            <input type="number" name="system.abilities.dex.level" value="{{system.abilities.dex.level}}" min="0"/>
+            <button
+              type="button"
+              class="stepper inc"
+              data-path="system.abilities.dex.level"
+              {{#unless system.statsBreakdown.points.remaining}}disabled aria-disabled="true"{{/unless}}
+            >+</button>
+          </div>
+        </td>
+        {{!-- READ-ONLY --}}
+        <td class="gear-total">{{equippedTotals.dex}}</td>
+        <td>
+          <div class="with-steppers">
+            <button type="button" class="stepper dec" data-path="system.abilities.dex.misc">−</button>
+            <input type="number" name="system.abilities.dex.misc" value="{{system.abilities.dex.misc}}"/>
+            <button type="button" class="stepper inc" data-path="system.abilities.dex.misc">+</button>
+          </div>
+        </td>
+        <td>
+          <div class="with-steppers">
+            <button type="button" class="stepper dec" data-path="system.abilities.dex.temp">−</button>
+            <input type="number" name="system.abilities.dex.temp" value="{{system.abilities.dex.temp}}"/>
+            <button type="button" class="stepper inc" data-path="system.abilities.dex.temp">+</button>
+          </div>
+        </td>
+      </tr>
+
+      {{!-- Constitution --}}
+      <tr>
+        <td class="attr"><strong>Constitution</strong></td>
+        <td>{{system.statsBreakdown.raceBase.con}}</td>
+        <td>
+          <div class="with-steppers">
+            <button type="button" class="stepper dec" data-path="system.abilities.con.level">−</button>
+            <input type="number" name="system.abilities.con.level" value="{{system.abilities.con.level}}" min="0"/>
+            <button
+              type="button"
+              class="stepper inc"
+              data-path="system.abilities.con.level"
+              {{#unless system.statsBreakdown.points.remaining}}disabled aria-disabled="true"{{/unless}}
+            >+</button>
+          </div>
+        </td>
+        {{!-- READ-ONLY --}}
+        <td class="gear-total">{{equippedTotals.con}}</td>
+        <td>
+          <div class="with-steppers">
+            <button type="button" class="stepper dec" data-path="system.abilities.con.misc">−</button>
+            <input type="number" name="system.abilities.con.misc" value="{{system.abilities.con.misc}}"/>
+            <button type="button" class="stepper inc" data-path="system.abilities.con.misc">+</button>
+          </div>
+        </td>
+        <td>
+          <div class="with-steppers">
+            <button type="button" class="stepper dec" data-path="system.abilities.con.temp">−</button>
+            <input type="number" name="system.abilities.con.temp" value="{{system.abilities.con.temp}}"/>
+            <button type="button" class="stepper inc" data-path="system.abilities.con.temp">+</button>
+          </div>
+        </td>
+      </tr>
+
+      {{!-- Intelligence --}}
+      <tr>
+        <td class="attr"><strong>Intelligence</strong></td>
+        <td>{{system.statsBreakdown.raceBase.int}}</td>
+        <td>
+          <div class="with-steppers">
+            <button type="button" class="stepper dec" data-path="system.abilities.int.level">−</button>
+            <input type="number" name="system.abilities.int.level" value="{{system.abilities.int.level}}" min="0"/>
+            <button
+              type="button"
+              class="stepper inc"
+              data-path="system.abilities.int.level"
+              {{#unless system.statsBreakdown.points.remaining}}disabled aria-disabled="true"{{/unless}}
+            >+</button>
+          </div>
+        </td>
+        {{!-- READ-ONLY --}}
+        <td class="gear-total">{{equippedTotals.int}}</td>
+        <td>
+          <div class="with-steppers">
+            <button type="button" class="stepper dec" data-path="system.abilities.int.misc">−</button>
+            <input type="number" name="system.abilities.int.misc" value="{{system.abilities.int.misc}}"/>
+            <button type="button" class="stepper inc" data-path="system.abilities.int.misc">+</button>
+          </div>
+        </td>
+        <td>
+          <div class="with-steppers">
+            <button type="button" class="stepper dec" data-path="system.abilities.int.temp">−</button>
+            <input type="number" name="system.abilities.int.temp" value="{{system.abilities.int.temp}}"/>
+            <button type="button" class="stepper inc" data-path="system.abilities.int.temp">+</button>
+          </div>
+        </td>
+      </tr>
+
+      {{!-- Charisma --}}
+      <tr>
+        <td class="attr"><strong>Charisma</strong></td>
+        <td>{{system.statsBreakdown.raceBase.cha}}</td>
+        <td>
+          <div class="with-steppers">
+            <button type="button" class="stepper dec" data-path="system.abilities.cha.level">−</button>
+            <input type="number" name="system.abilities.cha.level" value="{{system.abilities.cha.level}}" min="0"/>
+            <button
+              type="button"
+              class="stepper inc"
+              data-path="system.abilities.cha.level"
+              {{#unless system.statsBreakdown.points.remaining}}disabled aria-disabled="true"{{/unless}}
+            >+</button>
+          </div>
+        </td>
+        {{!-- READ-ONLY --}}
+        <td class="gear-total">{{equippedTotals.cha}}</td>
+        <td>
+          <div class="with-steppers">
+            <button type="button" class="stepper dec" data-path="system.abilities.cha.misc">−</button>
+            <input type="number" name="system.abilities.cha.misc" value="{{system.abilities.cha.misc}}"/>
+            <button type="button" class="stepper inc" data-path="system.abilities.cha.misc">+</button>
+          </div>
+        </td>
+        <td>
+          <div class="with-steppers">
+            <button type="button" class="stepper dec" data-path="system.abilities.cha.temp">−</button>
+            <input type="number" name="system.abilities.cha.temp" value="{{system.abilities.cha.temp}}"/>
+            <button type="button" class="stepper inc" data-path="system.abilities.cha.temp">+</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

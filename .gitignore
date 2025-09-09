@@ -1,0 +1,23 @@
+# Node / tooling
+node_modules/
+dist/
+build/
+coverage/
+.nyc_output/
+
+# Editors & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+
+# Caches / temp
+.cache/
+.temp/
+
+# Local release archives
+*.zip
+*.7z
+*.tar
+*.gz

@@ -1,0 +1,96 @@
+{{!-- templates/actor/actor-skills.hbs --}}
+
+<section class="actor-abilities skills">
+
+  {{!-- Helper partial for one skill section --}}
+  {{#*inline "skillSection"}}
+  <details class="ability-accordion" {{#if open}}open{{/if}}>
+    <summary class="flexrow items-center">
+      <h3 class="grow">{{title}} ({{items.length}})</h3>
+      <div class="flexrow gap-sm">
+        <input type="text" class="ability-search" placeholder="Search name or tag…" data-scope="{{scope}}" />
+        <a class="item-create" data-type="{{createType}}"><i class="fa-solid fa-plus"></i> New</a>
+      </div>
+    </summary>
+
+    <div class="accordion-body">
+      <table class="ben-table ability-table" data-scope="{{scope}}">
+        <thead>
+          <tr>
+            <th style="width:36%">Name</th>
+            <th class="num" title="Base / Effective">Lvl</th>
+            <th style="width:20%">Actions</th>
+            <th class="num" style="width:10%">Cooldown</th>
+            <th style="width:20%">Tags</th>
+            <th class="num" style="width:14%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each items as |it|}}
+          <tr data-item-id="{{it.id}}" data-name="{{it.name}}" data-tags="{{it.system.tags}}">
+            <td>{{it.name}}</td>
+            <td class="num">{{it.system.level.base}} / {{add it.system.level.base it.system.level.bonus}}</td>
+            <td>{{it.system.actions.qty}} × {{it.system.actions.type}}</td>
+            <td class="num">{{it.system.cooldown.turns}}</td>
+            <td>{{it.system.tags}}</td>
+            <td class="num">
+              <a class="ability-use"><i class="fa-solid fa-bolt"></i> Use</a>
+              &nbsp;
+              <a class="ability-edit" title="Edit"><i class="fa-regular fa-pen-to-square"></i></a>
+            </td>
+          </tr>
+          {{/each}}
+          {{#unless items.length}}
+          <tr><td colspan="6" class="hint">No items yet.</td></tr>
+          {{/unless}}
+        </tbody>
+      </table>
+    </div>
+  </details>
+  {{/inline}}
+
+  {{!-- Six sections --}}
+  {{> skillSection
+      title="Charisma"
+      items=abilities.skills.charisma
+      scope="skill-charisma"
+      createType="skill-charisma"
+      open=true
+  }}
+
+  {{> skillSection
+      title="Crafting"
+      items=abilities.skills.crafting
+      scope="skill-crafting"
+      createType="skill-crafting"
+  }}
+
+  {{> skillSection
+      title="Combat"
+      items=abilities.skills.combat
+      scope="skill-combat"
+      createType="skill-combat"
+  }}
+
+  {{> skillSection
+      title="Movement"
+      items=abilities.skills.movement
+      scope="skill-movement"
+      createType="skill-movement"
+  }}
+
+  {{> skillSection
+      title="Perception"
+      items=abilities.skills.perception
+      scope="skill-perception"
+      createType="skill-perception"
+  }}
+
+  {{> skillSection
+      title="Stealth"
+      items=abilities.skills.stealth
+      scope="skill-stealth"
+      createType="skill-stealth"
+  }}
+
+</section>

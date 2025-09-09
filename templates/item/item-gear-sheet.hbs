@@ -1,0 +1,81 @@
+<form class="flexcol" autocomplete="off">
+  <!-- Header: image left, name right -->
+  <header class="sheet-header flexrow items-center">
+    <img class="profile"
+         src="{{item.img}}"
+         data-edit="img"
+         title="{{item.name}}"
+         width="64" height="64" />
+    <h1 class="ben-item-title flexcol">
+      <input name="name" type="text" value="{{item.name}}" placeholder="Name"/>
+    </h1>
+  </header>
+
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="description">Description</a>
+    <a class="item" data-tab="details">Details</a>
+    <a class="item" data-tab="effects">Effects</a>
+  </nav>
+
+  <section class="sheet-body">
+    <!-- DESCRIPTION (no image, just editor) -->
+    <div class="tab" data-group="primary" data-tab="description">
+      {{editor system.description target="system.description" button=true owner=owner editable=editable}}
+    </div>
+
+    <!-- DETAILS -->
+    <div class="tab" data-group="primary" data-tab="details">
+      <table class="ben-form-grid">
+        <tr>
+          <th>Equipped</th>
+          <td>
+            <input type="checkbox" name="system.equipped" {{checked system.equipped}} />
+          </td>
+        </tr>
+        <tr>
+          <th>Quantity</th>
+          <td><input type="number" name="system.quantity" value="{{system.quantity}}" step="1" min="0"/></td>
+        </tr>
+        <tr>
+          <th>Value</th>
+          <td><input type="number" name="system.value" value="{{system.value}}" step="1" min="0"/></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- EFFECTS (same controls you use elsewhere) -->
+    <div class="tab" data-group="primary" data-tab="effects">
+      <section class="effects">
+        <ol class="items-list">
+          <li class="items-header flexrow">
+            <div class="item-name">Active Effects</div>
+            <div class="item-controls">
+              <a class="effect-control" data-action="create" title="Add Effect">
+                <i class="fas fa-plus"></i> Add
+              </a>
+            </div>
+          </li>
+
+          {{#each item.effects.contents as |ef|}}
+            <li class="item effect flexrow" data-effect-id="{{ef.id}}">
+              <div class="item-name flexrow">
+                <img class="item-image" src="{{ef.icon}}" width="24" height="24"/>
+                <h4>{{ef.name}}</h4>
+                {{#if ef.disabled}}<span class="tag muted">(disabled)</span>{{/if}}
+              </div>
+              <div class="item-controls">
+                <a class="effect-control" data-action="toggle" title="Enable/Disable"><i class="fas fa-power-off"></i></a>
+                <a class="effect-control" data-action="edit"   title="Edit"><i class="fas fa-edit"></i></a>
+                <a class="effect-control" data-action="delete" title="Delete"><i class="fas fa-trash"></i></a>
+              </div>
+            </li>
+          {{/each}}
+
+          {{#unless item.effects.contents.length}}
+            <li class="notes">No effects on this item.</li>
+          {{/unless}}
+        </ol>
+      </section>
+    </div>
+  </section>
+</form>

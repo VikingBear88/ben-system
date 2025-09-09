@@ -1,0 +1,57 @@
+{{!-- RACE TAB: list of race items attached to this actor --}}
+<div class="race-tab">
+
+  <div class="table-toolbar">
+    {{#if isGM}}
+      <a class="item-create button" data-type="race">
+        <i class="fas fa-plus"></i> Add Race
+      </a>
+    {{/if}}
+  </div>
+
+  {{#if hasRaceItems}}
+    <table class="race-table">
+      <thead>
+        <tr>
+          <th class="col-name">Name</th>
+          <th class="col-attr">STR</th>
+          <th class="col-attr">CON</th>
+          <th class="col-attr">DEX</th>
+          <th class="col-attr">INT</th>
+          <th class="col-attr">CHA</th>
+          <th class="col-move">Walk</th>
+          <th class="col-move">Swim</th>
+          <th class="col-actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each raceRows as |r|}}
+          <tr class="item" data-item-id="{{r.id}}">
+            <td class="col-name">
+              <img class="icon" src="{{r.img}}" />
+              <a class="item-edit">{{r.name}}</a>
+            </td>
+
+            <td class="col-attr">{{r.str}}</td>
+            <td class="col-attr">{{r.con}}</td>
+            <td class="col-attr">{{r.dex}}</td>
+            <td class="col-attr">{{r.int}}</td>
+            <td class="col-attr">{{r.cha}}</td>
+
+            <td class="col-move">{{r.walk}}</td>
+            <td class="col-move">{{r.swim}}</td>
+
+            <td class="col-actions">
+              <a class="item-edit" title="Edit"><i class="fas fa-edit"></i></a>
+              {{#if ../isGM}}
+                <a class="item-delete" title="Remove"><i class="fas fa-trash"></i></a>
+              {{/if}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <p class="muted">No race items on this character yet.</p>
+  {{/if}}
+</div>

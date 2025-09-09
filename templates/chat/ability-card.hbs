@@ -1,0 +1,13 @@
+<div class="ben-ability-card">
+  <header><b>{{item.name}}</b> — used by {{actor.name}}</header>
+  <p>To-Hit: <b>{{totalToHit}}</b> (d20: {{d20nat}}, Level: {{effLevel}}, HitMod: {{hitMod}}, Situational: {{sitMod}}) vs {{vsKind}}</p>
+  <p>Per-target Damage: <b>{{finalDmg}}</b> <i>({{dmgType}})</i> {{#if crit}}<span class="tag">CRIT</span>{{/if}}</p>
+
+  {{#if targets.length}}
+  <ul class="ben-target-report">
+    {{#each targets}}
+      <li><b>{{this.name}}</b> — {{#if (eq ../vsKind "DC")}}check{{else}}{{../vsKind}} {{this.defenseValue}}{{/if}} → {{#if this.hit}}<span class="hit">HIT</span> ({{this.applied}}){{else}}<span class="miss">MISS</span>{{/if}}</li>
+    {{/each}}
+  </ul>
+  {{/if}}
+</div>

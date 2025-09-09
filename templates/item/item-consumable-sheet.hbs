@@ -1,0 +1,113 @@
+<form class="flexcol" autocomplete="off">
+  <!-- Header: image left, name right -->
+  <header class="sheet-header flexrow items-center">
+    <img class="profile"
+         src="{{item.img}}"
+         data-edit="img"
+         title="{{item.name}}"
+         width="64" height="64" />
+    <h1 class="ben-item-title flexcol">
+      <input name="name" type="text" value="{{item.name}}" placeholder="Name"/>
+    </h1>
+  </header>
+
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="description">Description</a>
+    <a class="item" data-tab="details">Details</a>
+    <a class="item" data-tab="effects">Effects</a>   <!-- NEW -->
+  </nav>
+
+  <section class="sheet-body">
+    <!-- DESCRIPTION TAB -->
+    <div class="tab" data-group="primary" data-tab="description">
+      <div class="desc-image-wrap">
+        {{#if system.descriptionImg}}
+          <img class="desc-image" src="{{system.descriptionImg}}" data-edit="system.descriptionImg" title="Click to change description image" />
+        {{else}}
+          <img class="desc-image" src="{{item.img}}" data-edit="system.descriptionImg" title="Click to set description image" />
+        {{/if}}
+      </div>
+      {{editor system.description target="system.description" button=true owner=owner editable=editable}}
+    </div>
+
+    <!-- DETAILS TAB -->
+    <div class="tab" data-group="primary" data-tab="details">
+      <table class="ben-form-grid">
+        <tr>
+          <th>Food Type</th>
+          <td>
+            <select name="system.foodType">
+              <option {{#if (eq system.foodType "Meal")}}selected{{/if}}>Meal</option>
+              <option {{#if (eq system.foodType "Snack")}}selected{{/if}}>Snack</option>
+              <option {{#if (eq system.foodType "Buff")}}selected{{/if}}>Buff</option>
+              <option {{#if (eq system.foodType "Pet")}}selected{{/if}}>Pet</option>
+              <option {{#if (eq system.foodType "Alcohol")}}selected{{/if}}>Alcohol</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>Portions</th>
+          <td>
+    <input type="number" name="system.portions"
+           value="{{system.portions}}" step="1" min="1"/>
+  </td>
+</tr>
+<tr>
+  <th>Portions Remaining</th>
+  <td>
+    <input type="number" name="system.portionsRemaining"
+           value="{{system.portionsRemaining}}" step="1" min="0"/>
+  </td>
+</tr>
+
+        <tr>
+          <th>Calories</th>
+          <td><input type="number" name="system.calories" value="{{system.calories}}" step="1" min="0"/></td>
+        </tr>
+        <tr>
+          <th>Quantity</th>
+          <td><input type="number" name="system.quantity" value="{{system.quantity}}" step="1" min="0"/></td>
+        </tr>
+        <tr>
+          <th>Value</th>
+          <td><input type="number" name="system.value" value="{{system.value}}" step="1" min="0"/></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- EFFECTS TAB (NEW) -->
+    <div class="tab" data-group="primary" data-tab="effects">
+      <section class="effects">
+        <ol class="items-list">
+          <li class="items-header flexrow">
+            <div class="item-name">Active Effects</div>
+            <div class="item-controls">
+              <a class="effect-control" data-action="create" title="Add Effect">
+                <i class="fas fa-plus"></i> Add
+              </a>
+            </div>
+          </li>
+
+          {{#each item.effects.contents as |ef|}}
+            <li class="item effect flexrow" data-effect-id="{{ef.id}}">
+              <div class="item-name flexrow">
+                <img class="item-image" src="{{ef.icon}}" width="24" height="24"/>
+                <h4>{{ef.name}}</h4>
+                {{#if ef.disabled}}<span class="tag muted">(disabled)</span>{{/if}}
+              </div>
+              <div class="item-controls">
+                <a class="effect-control" data-action="toggle" title="Enable/Disable"><i class="fas fa-power-off"></i></a>
+                <a class="effect-control" data-action="edit"   title="Edit"><i class="fas fa-edit"></i></a>
+                <a class="effect-control" data-action="delete" title="Delete"><i class="fas fa-trash"></i></a>
+              </div>
+            </li>
+          {{/each}}
+
+          {{#unless item.effects.contents.length}}
+            <li class="notes">No effects on this item.</li>
+          {{/unless}}
+        </ol>
+      </section>
+    </div>
+  </section>
+</form>

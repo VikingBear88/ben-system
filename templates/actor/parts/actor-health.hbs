@@ -1,0 +1,259 @@
+{{!-- ───────────────────────────── Health (Status Effects) ───────────────────────────── --}}
+
+<section class="health-header flexcol flex-group-center" style="margin-bottom: 0.75rem;">
+  <h2 style="margin:0;">Regeneration Benefit %</h2>
+  <div class="h1" style="font-weight:700; text-align:center;">
+    {{healthHeader.regenPct}}
+  </div>
+  <p style="margin:0.25rem 0 0; text-align:center;">
+    {{healthHeader.regenAmt}} HP points regained every 6 seconds. If 0, 1HP a min regen outside of combat
+  </p>
+</section>
+<a class="button health-tick"><i class="fas fa-heartbeat"></i> Start of Turn: Apply Status Effects</a>
+<a class="button health-regen" style="margin-left: .5rem;">
+  <i class="fas fa-leaf"></i> End of Turn: Apply Regeneration
+</a>
+
+
+{{!-- Helper partial to render an item "card" row --}}
+{{!-- We inline this pattern for each kind so you don’t need a custom helper. --}}
+
+{{!-- ===================== DAMAGE ===================== --}}
+<section class="se-section">
+  <h3 class="se-heading">Damaging</h3>
+
+  {{#each items as |it|}}
+    {{#if (and (eq it.type "statuseffect") (eq it.system.effect.kind "Damage"))}}
+    <div class="item flexrow se-card" data-item-id="{{it._id}}">
+      <div class="item-name flexrow">
+        <img class="item-image" src="{{it.img}}" title="{{it.name}}" width="32" height="32"/>
+        <h4 class="name">{{it.name}}</h4>
+        <span class="tag small">Damage: {{it.system.effect.damage.status}}</span>
+      </div>
+
+      <div class="item-body grid grid-6col">
+        <div class="field">
+          <label>Level</label>
+          <div class="stepper-wrap">
+            <a class="se-stepper dec" data-item-id="{{it._id}}" data-path="system.effect.damage.level">−</a>
+            <input type="number" value="{{it.system.effect.damage.level}}" disabled/>
+            <a class="se-stepper inc" data-item-id="{{it._id}}" data-path="system.effect.damage.level">+</a>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Rounds / Lvl</label>
+          <div class="value">{{it.system.effect.damage.roundsPerLevel}}</div>
+        </div>
+
+        <div class="field">
+          <label>% HP / Round</label>
+          <div class="value">{{it.system.effect.damage.hpPercentPerRound}}</div>
+        </div>
+
+        <div class="field">
+          <label>Rounds Remaining</label>
+          <div class="value">{{it.system.effect.damage.roundsRemaining}}</div>
+        </div>
+
+        <div class="field">
+          <label>Active</label>
+          <input type="checkbox"
+                 class="se-toggle"
+                 data-item-id="{{it._id}}"
+                 data-path="system.effect.damage.active"
+                 {{checked it.system.effect.damage.active}}/>
+        </div>
+
+        <div class="field item-controls flexrow">
+          <a class="item-edit" title="Edit"><i class="fas fa-edit"></i></a>
+          <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+  {{/each}}
+</section>
+
+
+{{!-- ===================== CONTROL ===================== --}}
+<section class="se-section">
+  <h3 class="se-heading">Control</h3>
+
+  {{#each items as |it|}}
+    {{#if (and (eq it.type "statuseffect") (eq it.system.effect.kind "Control"))}}
+    <div class="item flexrow se-card" data-item-id="{{it._id}}">
+      <div class="item-name flexrow">
+        <img class="item-image" src="{{it.img}}" title="{{it.name}}" width="32" height="32"/>
+        <h4 class="name">{{it.name}}</h4>
+        <span class="tag small">Control</span>
+      </div>
+
+      <div class="item-body grid grid-6col">
+        <div class="field">
+          <label>Level</label>
+          <div class="stepper-wrap">
+            <a class="se-stepper dec" data-item-id="{{it._id}}" data-path="system.effect.control.level">−</a>
+            <input type="number" value="{{it.system.effect.control.level}}" disabled/>
+            <a class="se-stepper inc" data-item-id="{{it._id}}" data-path="system.effect.control.level">+</a>
+          </div>
+        </div>
+
+        <div class="field col-span-4">
+          <label>Details</label>
+          <div class="value">{{{it.system.effect.control.previewHtml}}}</div>
+        </div>
+
+        <div class="field item-controls flexrow">
+          <a class="item-edit" title="Edit"><i class="fas fa-edit"></i></a>
+          <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+  {{/each}}
+</section>
+
+
+{{!-- ===================== BUFF ===================== --}}
+<section class="se-section">
+  <h3 class="se-heading">Buffs</h3>
+
+  {{#each items as |it|}}
+    {{#if (and (eq it.type "statuseffect") (eq it.system.effect.kind "Buff"))}}
+    <div class="item flexrow se-card" data-item-id="{{it._id}}">
+      <div class="item-name flexrow">
+        <img class="item-image" src="{{it.img}}" title="{{it.name}}" width="32" height="32"/>
+        <h4 class="name">{{it.name}}</h4>
+        <span class="tag small">Buff</span>
+      </div>
+
+      <div class="item-body grid grid-6col">
+        <div class="field">
+          <label>Level</label>
+          <div class="stepper-wrap">
+            <a class="se-stepper dec" data-item-id="{{it._id}}" data-path="system.effect.buff.level">−</a>
+            <input type="number" value="{{it.system.effect.buff.level}}" disabled/>
+            <a class="se-stepper inc" data-item-id="{{it._id}}" data-path="system.effect.buff.level">+</a>
+          </div>
+        </div>
+
+        <div class="field col-span-4">
+          <label>Modifiers</label>
+          <div class="chips">
+            {{#each it.system.effect.mods as |m|}}
+              <span class="chip">{{m.key}}: {{m.value}}</span>
+            {{/each}}
+          </div>
+        </div>
+
+        <div class="field item-controls flexrow">
+          <a class="item-edit" title="Edit"><i class="fas fa-edit"></i></a>
+          <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+  {{/each}}
+</section>
+
+
+{{!-- ===================== DEBUFF ===================== --}}
+<section class="se-section">
+  <h3 class="se-heading">Debuffs</h3>
+
+  {{#each items as |it|}}
+    {{#if (and (eq it.type "statuseffect") (eq it.system.effect.kind "Debuff"))}}
+    <div class="item flexrow se-card" data-item-id="{{it._id}}">
+      <div class="item-name flexrow">
+        <img class="item-image" src="{{it.img}}" title="{{it.name}}" width="32" height="32"/>
+        <h4 class="name">{{it.name}}</h4>
+        <span class="tag small">Debuff</span>
+      </div>
+
+      <div class="item-body grid grid-6col">
+        <div class="field">
+          <label>Level</label>
+          <div class="stepper-wrap">
+            <a class="se-stepper dec" data-item-id="{{it._id}}" data-path="system.effect.debuff.level">−</a>
+            <input type="number" value="{{it.system.effect.debuff.level}}" disabled/>
+            <a class="se-stepper inc" data-item-id="{{it._id}}" data-path="system.effect.debuff.level">+</a>
+          </div>
+        </div>
+
+        <div class="field col-span-4">
+          <label>Modifiers</label>
+          <div class="chips">
+            {{#each it.system.effect.mods as |m|}}
+              <span class="chip">{{m.key}}: {{m.value}}</span>
+            {{/each}}
+          </div>
+        </div>
+
+        <div class="field item-controls flexrow">
+          <a class="item-edit" title="Edit"><i class="fas fa-edit"></i></a>
+          <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+  {{/each}}
+</section>
+
+
+{{!-- ===================== SYSTEM ===================== --}}
+<section class="se-section">
+  <h3 class="se-heading">System</h3>
+
+  {{#each items as |it|}}
+    {{#if (and (eq it.type "statuseffect") (eq it.system.effect.kind "System"))}}
+    <div class="item flexrow se-card" data-item-id="{{it._id}}">
+      <div class="item-name flexrow">
+        <img class="item-image" src="{{it.img}}" title="{{it.name}}" width="32" height="32"/>
+        <h4 class="name">{{it.name}}</h4>
+        <span class="tag small">System</span>
+      </div>
+
+      <div class="item-body grid grid-6col">
+        <div class="field">
+          <label>Level</label>
+          <div class="stepper-wrap">
+            <a class="se-stepper dec" data-item-id="{{it._id}}" data-path="system.effect.system.level">−</a>
+            <input type="number" value="{{it.system.effect.system.level}}" disabled/>
+            <a class="se-stepper inc" data-item-id="{{it._id}}" data-path="system.effect.system.level">+</a>
+          </div>
+        </div>
+
+        <div class="field col-span-4">
+          <label>Details</label>
+          <div class="value">{{{it.system.effect.system.previewHtml}}}</div>
+        </div>
+
+        <div class="field item-controls flexrow">
+          <a class="item-edit" title="Edit"><i class="fas fa-edit"></i></a>
+          <a class="item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+  {{/each}}
+</section>
+
+{{!-- ─────────────── minimal styles to make the “cards” look nice ─────────────── --}}
+<style>
+  .se-heading{ margin:.75rem 0 .25rem; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:.25rem;}
+  .se-card{ align-items:flex-start; padding:.4rem .5rem; margin:.25rem 0; border-radius:6px; background:rgba(255,255,255,.03); }
+  .se-card .item-name{ gap:.5rem; align-items:center; min-width: 220px; }
+  .se-card .name{ margin:0; }
+  .se-card .tag{ margin-left:.35rem; opacity:.8; }
+  .se-card .item-body{ align-items:center; gap:.5rem; width:100%; }
+  .se-card .field{ display:flex; flex-direction:column; gap:.15rem; }
+  .se-card .value{ padding:.35rem .5rem; border-radius:4px; background:rgba(255,255,255,.06); }
+  .se-card .chips{ display:flex; flex-wrap:wrap; gap:.25rem; }
+  .se-card .chip{ padding:.2rem .5rem; border-radius:999px; background:rgba(255,255,255,.08); }
+  .stepper-wrap{ display:flex; align-items:center; gap:.25rem; }
+  .stepper-wrap input[disabled]{ width:3.2rem; text-align:center; }
+  .se-stepper{ display:inline-flex; align-items:center; justify-content:center; width:1.4rem; height:1.4rem; border-radius:4px; background:rgba(255,255,255,.08); cursor:pointer; user-select:none; }
+  .item-controls a{ margin-left:.35rem; }
+  .col-span-4{ grid-column: span 4 / span 4; }
+</style>

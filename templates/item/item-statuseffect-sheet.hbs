@@ -1,0 +1,125 @@
+<form class="{{cssClass}} ben-system item statuseffect" autocomplete="off">
+  <header class="sheet-header flexrow">
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    <div class="header-fields">
+      <h1 class="charname">
+        <input name="name" type="text" value="{{item.name}}" placeholder="Name"/>
+      </h1>
+
+<div class="field">
+  <label>Effect Kind</label>
+  <select name="system.effect.kind">
+    {{selectOptions statusEffectKind selected=system.effect.kind}}
+  </select>
+</div>
+    </div>
+  </header>
+
+  <section class="sheet-body">
+
+    {{!-- ===================== DAMAGE ===================== --}}
+    {{#if (eq system.effect.kind "Damage")}}
+    <div class="grid grid-2col">
+
+<div class="field">
+  <label>Effect Kind</label>
+  <select name="system.effect.damage">
+    {{selectOptions statusEffectDamage selected=system.effect.Damage}}
+  </select>
+</div>
+
+      <div class="form-group">
+        <label>Level</label>
+        <input type="number" name="system.effect.damage.level" value="{{system.effect.damage.level}}" data-dtype="Number"/>
+      </div>
+
+      <div class="form-group">
+        <label>Rounds Per Level</label>
+        <input type="number" name="system.effect.damage.roundsPerLevel" value="{{system.effect.damage.roundsPerLevel}}" data-dtype="Number"/>
+      </div>
+
+      <div class="form-group">
+        <label>% HP Per Round</label>
+        <input type="number" name="system.effect.damage.hpPercentPerRound" value="{{system.effect.damage.hpPercentPerRound}}" data-dtype="Number"/>
+      </div>
+
+      <div class="form-group">
+        <label>Rounds Remaining</label>
+        <input type="number" name="system.effect.damage.roundsRemaining" value="{{system.effect.damage.roundsRemaining}}" data-dtype="Number"/>
+      </div>
+
+      <div class="form-group">
+        <label>Active</label>
+        <input type="checkbox" name="system.effect.damage.active" {{checked system.effect.damage.active}}/>
+      </div>
+
+    </div>
+    {{/if}}
+
+    {{!-- ===================== CONTROL ===================== --}}
+    {{#if (eq system.effect.kind "Control")}}
+    <div class="form-group stacked">
+      <label>Control Details</label>
+      {{editor system.effect.control.text target="system.effect.control.text" button=true engine="prosemirror" owner=owner editable=editable}}
+    </div>
+    {{/if}}
+
+    {{!-- ===================== SYSTEM ===================== --}}
+    {{#if (eq system.effect.kind "System")}}
+    <div class="form-group stacked">
+      <label>System Effect</label>
+      {{editor system.effect.system.text target="system.effect.system.text" button=true engine="prosemirror" owner=owner editable=editable}}
+    </div>
+    {{/if}}
+
+    {{!-- ===================== BUFF / DEBUFF ===================== --}}
+    {{#if (or (eq system.effect.kind "Buff") (eq system.effect.kind "Debuff"))}}
+    <div class="form-group">
+      <label>{{#if (eq system.effect.kind "Buff")}}Buffs{{else}}Debuffs{{/if}}</label>
+      <table class="ben-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th style="width:140px;">Amount</th>
+            <th style="width:40px;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each system.effect.mods as |mod i|}}
+          <tr>
+            <td>
+              <select name="system.effect.mods.{{i}}.key">
+                {{#if CONFIG.BEN_SYSTEM.metrics}}
+                  {{selectOptions CONFIG.BEN_SYSTEM.metrics selected=mod.key}}
+                {{else}}
+                  {{#each ../modMetricOptions as |opt|}}
+                    <option value="{{opt}}" {{#if (eq ../mod.key opt)}}selected{{/if}}>{{opt}}</option>
+                  {{/each}}
+                {{/if}}
+              </select>
+            </td>
+            <td>
+              <input type="number" name="system.effect.mods.{{i}}.value" value="{{mod.value}}" data-dtype="Number"/>
+            </td>
+            <td class="control">
+              <a class="mod-row-remove" data-index="{{i}}" title="Remove"><i class="fas fa-trash"></i></a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <div class="flexrow" style="margin-top:.5rem;">
+        <a class="mod-row-add"><i class="fas fa-plus"></i> Add Row</a>
+      </div>
+    </div>
+    {{/if}}
+
+    <hr/>
+
+    <div class="form-group stacked">
+      <label>Description</label>
+      {{editor system.description target="system.description" button=true engine="prosemirror" owner=owner editable=editable}}
+    </div>
+
+  </section>
+</form>

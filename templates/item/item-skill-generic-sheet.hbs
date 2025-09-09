@@ -1,0 +1,107 @@
+<form class="flexcol">
+  <header class="sheet-header"><h1>{{item.name}}</h1></header>
+
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="details">Details</a>
+    <a class="item" data-tab="progress">Progression</a>
+    <a class="item" data-tab="effects">Effects</a>
+    <a class="item" data-tab="description">Description</a>
+  </nav>
+
+  <section class="sheet-body">
+    <div class="tab" data-group="primary" data-tab="details">
+      <div class="form-group">
+        <label>Action</label>
+        <div class="form-fields">
+          <select name="system.actions.type">
+            {{#each cfg.ACTION_TYPES as |lbl|}}
+              <option value="{{lbl}}" {{#if (eq ../system.actions.type lbl)}}selected{{/if}}>{{lbl}}</option>
+            {{/each}}
+          </select>
+          <input type="number" name="system.actions.qty" value="{{system.actions.qty}}" min="1" step="1"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Cooldown (turns)</label>
+        <input type="number" name="system.cooldown.turns" value="{{system.cooldown.turns}}" min="0" step="1"/>
+      </div>
+
+      <hr/>
+      <h3>Levels</h3>
+      <div class="form-group">
+        <label>Base Level</label>
+        <input type="number" name="system.level.base"  value="{{system.level.base}}"  min="1" max="{{levels.cap}}" step="1"/>
+        <span class="hint">Cap: {{levels.cap}} (Effective: {{levels.eff}})</span>
+      </div>
+
+      <div class="form-group">
+        <label>Level Bonus (effects/gear)</label>
+        <input type="number" name="system.level.bonus" value="{{system.level.bonus}}" step="1"/>
+      </div>
+
+      <div class="form-group">
+        <label>Unlock 16–20</label>
+        <input type="checkbox" name="system.level.unlock20" {{checked system.level.unlock20}}/>
+      </div>
+    </div>
+
+    <div class="tab" data-group="primary" data-tab="progress">
+      <div class="grid-2col">
+        <div>
+          <h3>Uses & Scaling</h3>
+          {{#if isGM}}
+          <div class="form-group">
+            <label>Initial Uses (GM)</label>
+            <input type="number" name="system.progress.initialUses" value="{{system.progress.initialUses}}" min="0" step="1"/>
+          </div>
+          {{/if}}
+
+          <div class="form-group">
+            <label>Current Uses</label>
+            <input type="number" name="system.progress.uses" value="{{system.progress.uses}}" min="0" step="1"/>
+          </div>
+
+          <div class="form-group">
+            <label>Uses Factor</label>
+            <input type="number" name="system.progress.factor" value="{{system.progress.factor}}" step="0.01"/>
+          </div>
+
+          <div class="form-group">
+            <label>Uses Flat Adj.</label>
+            <input type="number" name="system.progress.flat" value="{{system.progress.flat}}" step="1"/>
+          </div>
+
+          <p class="hint">Preview level from total uses: <b>{{previewLevel}}</b></p>
+        </div>
+
+        <div>
+          <h3>Unlocks</h3>
+          <table class="ben-table">
+            <thead><tr><th>Level</th><th>Drop item to unlock</th></tr></thead>
+            <tbody>
+              {{#each (range 1 21) as |lvl|}}
+              <tr>
+                <td>{{lvl}}</td>
+                <td class="unlock-drop" data-lvl="{{lvl}}">
+                  {{#each ../system.unlocks}}
+                    {{#if (eq this.lvl lvl)}}<code>{{this.uuid}}</code>{{/if}}
+                  {{/each}}
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab" data-group="primary" data-tab="effects">
+      {{> "systems/ben-system/templates/item/parts/item-effects.hbs"}}
+    </div>
+
+    <div class="tab" data-group="primary" data-tab="description">
+      {{editor system.description target="system.description" button=true owner=owner editable=editable}}
+    </div>
+  </section>
+</form>

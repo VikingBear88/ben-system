@@ -1,0 +1,79 @@
+{{!-- templates/actor/actor-spells.hbs --}}
+
+<section class="actor-abilities spells">
+
+  {{!-- Helper partial for one spell section --}}
+  {{#*inline "spellSection"}}
+  <details class="ability-accordion" {{#if open}}open{{/if}}>
+    <summary class="flexrow items-center">
+      <h3 class="grow">{{title}} ({{items.length}})</h3>
+      <div class="flexrow gap-sm">
+        <input type="text" class="ability-search" placeholder="Search name or tag…" data-scope="{{scope}}" />
+        <a class="item-create" data-type="{{createType}}"><i class="fa-solid fa-plus"></i> New</a>
+      </div>
+    </summary>
+
+    <div class="accordion-body">
+      <table class="ben-table ability-table" data-scope="{{scope}}">
+        <thead>
+          <tr>
+            <th style="width:30%">Name</th>
+            <th class="num" title="Base / Effective">Lvl</th>
+            <th class="num" title="Mana Cost">Mana</th>
+            <th style="width:16%">Source</th>
+            <th style="width:18%">Actions</th>
+            <th class="num" style="width:10%">Cooldown</th>
+            <th style="width:14%">Tags</th>
+            <th class="num" style="width:12%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each items as |it|}}
+          <tr data-item-id="{{it.id}}" data-name="{{it.name}}" data-tags="{{it.system.tags}}">
+            <td>{{it.name}}</td>
+            <td class="num">{{it.system.level.base}} / {{add it.system.level.base it.system.level.bonus}}</td>
+            <td class="num">{{it.system.spell.manaCost}}</td>
+            <td>{{it.system.spell.source}}</td>
+            <td>{{it.system.actions.qty}} × {{it.system.actions.type}}</td>
+            <td class="num">{{it.system.cooldown.turns}}</td>
+            <td>{{it.system.tags}}</td>
+            <td class="num">
+              <a class="ability-use"><i class="fa-solid fa-bolt"></i> Use</a>
+              &nbsp;
+              <a class="ability-edit" title="Edit"><i class="fa-regular fa-pen-to-square"></i></a>
+            </td>
+          </tr>
+          {{/each}}
+          {{#unless items.length}}
+          <tr><td colspan="8" class="hint">No items yet.</td></tr>
+          {{/unless}}
+        </tbody>
+      </table>
+    </div>
+  </details>
+  {{/inline}}
+
+  {{!-- Three sections --}}
+  {{> spellSection
+      title="Spells"
+      items=abilities.spells.spell
+      scope="spell"
+      createType="spell"
+      open=true
+  }}
+
+  {{> spellSection
+      title="Rituals"
+      items=abilities.spells.ritual
+      scope="ritual"
+      createType="ritual"
+  }}
+
+  {{> spellSection
+      title="Music"
+      items=abilities.spells.music
+      scope="music"
+      createType="music"
+  }}
+
+</section>

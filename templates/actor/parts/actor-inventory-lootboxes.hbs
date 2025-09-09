@@ -1,0 +1,158 @@
+{{!-- =========================
+     WEAPONS (unequipped)
+     ========================= --}}
+<details class="inventory-section weapons" open>
+  <summary class="section-title">Weapons</summary>
+
+  <header class="items-header flexrow">
+    <div class="col-name">Weapon</div>
+    <div class="col-type">Type</div>
+    <div class="col-pac">PAC</div>
+    <div class="col-mac">MAC</div>
+    <div class="col-str">STR</div>
+    <div class="col-dex">DEX</div>
+    <div class="col-con">CON</div>
+    <div class="col-int">INT</div>
+    <div class="col-cha">CHA</div>
+    <div class="col-qty">Qty</div>
+    <div class="col-eq">Equipped</div>
+    <div class="col-val">Value</div>
+    <div class="col-ctrl"></div>
+  </header>
+
+  <ol class="item-list">
+    {{#each items as |it|}}
+      {{#if (and (eq it.type "weapon") (not it.system.equipped))}}
+        <li class="item flexrow" data-item-id="{{#if it.id}}{{it.id}}{{else}}{{it._id}}{{/if}}">
+          <div class="col-name item-name">
+            <a class="item-edit">{{it.name}}</a>
+          </div>
+
+          <div class="col-type item-detail">
+            <div class="item-label">
+              {{#if (lookup ../weaponClassOptions it.system.weaponClass)}}
+                {{lookup ../weaponClassOptions it.system.weaponClass}}
+              {{else}}
+                {{it.system.weaponClass}}
+              {{/if}}
+            </div>
+          </div>
+          <div class="col-pac item-detail"><div class="item-label center">{{it.system.pacBonus}}</div></div>
+          <div class="col-mac item-detail"><div class="item-label center">{{it.system.macBonus}}</div></div>
+          <div class="col-str item-detail"><div class="item-label center">{{it.system.strBonus}}</div></div>
+          <div class="col-dex item-detail"><div class="item-label center">{{it.system.dexBonus}}</div></div>
+          <div class="col-con item-detail"><div class="item-label center">{{it.system.conBonus}}</div></div>
+          <div class="col-int item-detail"><div class="item-label center">{{it.system.intBonus}}</div></div>
+          <div class="col-cha item-detail"><div class="item-label center">{{it.system.chaBonus}}</div></div>
+          <div class="col-qty item-detail qty-field">
+            <button type="button" class="qty-step dec" data-path="system.quantity" aria-label="Decrease quantity">−</button>
+            <input type="number" class="item-field num center qty-input"
+                   data-path="system.quantity" value="{{it.system.quantity}}" min="0" step="1">
+            <button type="button" class="qty-step inc" data-path="system.quantity" aria-label="Increase quantity">+</button>
+          </div>
+
+          <div class="col-eq item-detail center">
+            <input type="checkbox" class="item-field" data-path="system.equipped" {{checked it.system.equipped}}>
+          </div>
+
+          <div class="col-val item-detail"><div class="item-label center">{{it.system.value}}</div></div>
+
+          <div class="col-ctrl item-controls">
+            <a class="item-control item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+          </div>
+        </li>
+      {{/if}}
+    {{/each}}
+  </ol>
+</details>
+
+
+{{!-- =========================
+     ARMOUR (unequipped)
+     ========================= --}}
+<details class="inventory-section armour" open>
+  <summary class="section-title">Armour</summary>
+
+  <header class="items-header flexrow">
+    <div class="item-name">Armour</div>
+    <div class="item-detail">Type</div>
+    <div class="item-detail">Slot</div>
+    <div class="item-detail">Sub-Slot</div>
+    <div class="item-detail">PAC</div>
+    <div class="item-detail">MAC</div>
+    <div class="item-detail">STR</div>
+    <div class="item-detail">DEX</div>
+    <div class="item-detail">CON</div>
+    <div class="item-detail">INT</div>
+    <div class="item-detail">CHA</div>
+    <div class="item-detail">Qty</div>
+    <div class="item-detail">Equipped</div>
+    <div class="item-detail">Value</div>
+    <div class="item-controls"></div>
+  </header>
+
+  <ol class="item-list">
+    {{#each items as |it|}}
+      {{#if (and (eq it.type "armour") (not it.system.equipped))}}
+        <li class="item flexrow" data-item-id="{{#if it.id}}{{it.id}}{{else}}{{it._id}}{{/if}}">
+          <div class="item-name">
+            <a class="item-edit">{{it.name}}</a>
+          </div>
+
+          <div class="item-detail"><div class="item-label">
+            {{#if (lookup @root.armourTypeOptions it.system.armourType)}}
+              {{lookup @root.armourTypeOptions it.system.armourType}}
+            {{else}}
+              {{it.system.armourType}}
+            {{/if}}
+          </div></div>
+
+          <div class="item-detail"><div class="item-label">
+            {{#if (lookup @root.bodyRegionOptions it.system.bodyRegion)}}
+              {{lookup @root.bodyRegionOptions it.system.bodyRegion}}
+            {{else}}
+              {{it.system.bodyRegion}}
+            {{/if}}
+          </div></div>
+
+          <div class="item-detail"><div class="item-label">
+            {{#if (lookup @root.subRegionOptions it.system.subRegion)}}
+              {{lookup @root.subRegionOptions it.system.subRegion}}
+            {{else}}
+              {{it.system.subRegion}}
+            {{/if}}
+          </div></div>
+
+          <div class="item-detail"><div class="item-label center">{{it.system.pacBonus}}</div></div>
+          <div class="item-detail"><div class="item-label center">{{it.system.macBonus}}</div></div>
+          <div class="item-detail"><div class="item-label center">{{it.system.strBonus}}</div></div>
+          <div class="item-detail"><div class="item-label center">{{it.system.dexBonus}}</div></div>
+          <div class="item-detail"><div class="item-label center">{{it.system.conBonus}}</div></div>
+          <div class="item-detail"><div class="item-label center">{{it.system.intBonus}}</div></div>
+          <div class="item-detail"><div class="item-label center">{{it.system.chaBonus}}</div></div>
+
+          <!-- Qty (moved before Equipped) -->
+          <div class="item-detail qty-field">
+            <button type="button" class="qty-step dec" data-path="system.quantity" aria-label="Decrease quantity">−</button>
+            <input type="number" class="item-field num center qty-input"
+                   data-path="system.quantity" value="{{it.system.quantity}}" min="0" step="1">
+            <button type="button" class="qty-step inc" data-path="system.quantity" aria-label="Increase quantity">+</button>
+          </div>
+
+          <!-- Equipped -->
+          <div class="item-detail center">
+            <input type="checkbox" class="item-field" data-path="system.equipped" {{checked it.system.equipped}}>
+          </div>
+
+          <!-- Value -->
+          <div class="item-detail"><div class="item-label center">{{it.system.value}}</div></div>
+
+          <!-- Delete -->
+          <div class="item-controls">
+            <a class="item-control item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+          </div>
+        </li>
+      {{/if}}
+    {{/each}}
+  </ol>
+</details>

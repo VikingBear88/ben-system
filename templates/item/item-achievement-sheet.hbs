@@ -1,0 +1,104 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+  <!-- Header -->
+  <header class="sheet-header flexrow">
+    <div class="profile-img">
+      <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    </div>
+
+    <div class="header-fields flexcol">
+      <h1 class="charname">
+        <input name="name" type="text" value="{{item.name}}" placeholder="Achievement name"/>
+      </h1>
+
+      <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="details">Details</a>
+        <a class="item" data-tab="effects">Effects</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Body -->
+  <section class="sheet-body">
+
+    <!-- Description -->
+    <div class="tab" data-group="primary" data-tab="description">
+      {{editor system.description target="system.description" button=true owner=owner editable=editable}}
+    </div>
+
+    <!-- Details (no quantity/value; instead Tag + Reward) -->
+    <div class="tab" data-group="primary" data-tab="details">
+      <div class="form-group">
+        <label>Tag</label>
+        <input type="text" name="system.tag" value="{{system.tag}}" placeholder="e.g., Exploration, Combat, Social"/>
+      </div>
+
+      <div class="form-group">
+        <label>Reward</label>
+        <input type="text" name="system.reward" value="{{system.reward}}" placeholder="What the player gets upon earning this"/>
+      </div>
+
+      <hr/>
+      <div class="form-group stacked">
+        <label>Quick Preview</label>
+        <div class="hint">
+          <strong>Tag:</strong> {{#if system.tag}}{{system.tag}}{{else}}—{{/if}}<br/>
+          <strong>Reward:</strong> {{#if system.reward}}{{system.reward}}{{else}}—{{/if}}
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Effects -->
+    <div class="tab" data-group="primary" data-tab="effects">
+      {{!-- If your system already uses a shared partial for effects, you can swap this block for that partial. --}}
+      <section class="effects-list-wrap">
+        {{#each effects as |section sid|}}
+          <div class="effects-section" data-category="{{sid}}">
+            <header class="effects-header flexrow">
+              <h4 class="flex1">{{section.label}}</h4>
+              <a class="effect-control" data-action="create" data-category="{{sid}}" title="Create Effect">
+                <i class="fas fa-plus"></i>
+              </a>
+            </header>
+
+            <ol class="effects-list">
+              {{#each section.effects as |efx|}}
+                <li class="effect" data-effect-id="{{efx.id}}">
+                  <div class="effect-header flexrow">
+                    <div class="effect-icon">
+                      <img src="{{efx.icon}}" alt="{{efx.label}}"/>
+                    </div>
+                    <h4 class="effect-name flex1">{{efx.label}}</h4>
+
+                    <div class="effect-controls">
+                      <a class="effect-control" data-action="toggle" title="Enable/Disable">
+                        <i class="fas fa-toggle-on {{#unless efx.disabled}}active{{/unless}}"></i>
+                      </a>
+                      <a class="effect-control" data-action="edit" title="Edit">
+                        <i class="fas fa-edit"></i>
+                      </a>
+                      <a class="effect-control" data-action="delete" title="Delete">
+                        <i class="fas fa-trash"></i>
+                      </a>
+                    </div>
+                  </div>
+
+                  {{#if efx.description}}
+                    <div class="effect-summary">
+                      {{{efx.description}}}
+                    </div>
+                  {{/if}}
+                </li>
+              {{/each}}
+            </ol>
+          </div>
+        {{/each}}
+
+        {{#unless effects}}
+          <p class="hint">No effects yet. Click <i class="fas fa-plus"></i> to add one.</p>
+        {{/unless}}
+      </section>
+    </div>
+
+  </section>
+</form>

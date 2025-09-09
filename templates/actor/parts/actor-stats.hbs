@@ -1,0 +1,63 @@
+{{!-- Sub Navigation for Stats --}}
+<nav class="stats-tabs tabs" data-group="stats">
+  {{!-- Default tab is specified in actor-sheet.mjs --}}
+  <a class="item" data-tab="statstotals">Stats Totals</a>
+  <a class="item" data-tab="statsbreakdowns">Stats Breakdowns</a>
+  <a class="item" data-tab="offensive">Offensive</a>
+  <a class="item" data-tab="defensive">Defensive</a>
+  <a class="item" data-tab="resistances">Resistances</a>
+  <a class="item" data-tab="history">History</a>
+  <a class="item" data-tab="race">Race</a>
+  <a class="item" data-tab="miscstats">Misc Stats</a>
+  <a class="item" data-tab="movement">Movement</a>
+</nav>
+
+{{!-- Sub Tab Container --}}
+<section class="stats-body">
+
+  {{!-- Stats Totals Tab --}}
+  <div class="tab statstotals" data-group="stats" data-tab="statstotals">
+    {{> "systems/ben-system/templates/actor/parts/actor-stats-statstotals.hbs"}}
+  </div>
+
+  {{!-- Stats Breakdown Tab --}}
+  <div class="tab statsbreakdowns" data-group="stats" data-tab="statsbreakdowns">
+    {{> "systems/ben-system/templates/actor/parts/actor-stats-statsbreakdowns.hbs"}}
+  </div>
+
+  {{!-- Offensive Stats Tab --}}
+  <div class="tab offensive" data-group="stats" data-tab="offensive">
+    {{> "systems/ben-system/templates/actor/parts/actor-stats-offensive.hbs"}}
+  </div>
+
+  {{!-- Defensive Stats Tab --}}
+  <div class="tab defensive" data-group="stats" data-tab="defensive">
+    {{> "systems/ben-system/templates/actor/parts/actor-stats-defensive.hbs"}}
+  </div>
+
+    {{!-- Resistances Stats Tab --}}
+  <div class="tab resistances" data-group="stats" data-tab="resistances">
+    {{> "systems/ben-system/templates/actor/parts/actor-stats-resistances.hbs"}}
+  </div>
+
+    {{!-- History Stats Tab --}}
+  <div class="tab history" data-group="stats" data-tab="history">
+    {{> "systems/ben-system/templates/actor/parts/actor-stats-history.hbs"}}
+  </div>
+
+  {{!-- Race Tab --}}
+  <div class="tab race" data-group="stats" data-tab="race">
+    {{> "systems/ben-system/templates/actor/parts/actor-stats-race.hbs"}}
+  </div>
+
+  {{!-- Misc Stats Tab --}}
+  <div class="tab miscstats" data-group="stats" data-tab="miscstats">
+    {{> "systems/ben-system/templates/actor/parts/actor-stats-miscstats.hbs"}}
+  </div>
+
+  {{!-- Movement Tab --}}
+  <div class="tab movement" data-group="stats" data-tab="movement">
+    {{> "systems/ben-system/templates/actor/parts/actor-stats-movement.hbs"}}
+  </div>
+
+</section>

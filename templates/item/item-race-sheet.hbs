@@ -1,0 +1,104 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+  {{!-- HEADER: name + sidebar icon (uses item.img as usual) --}}
+  <header class="sheet-header flexrow">
+    <div class="profile-img">
+      <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    </div>
+
+    <div class="header-fields flexcol">
+      <h1 class="charname">
+        <input name="name" type="text" value="{{item.name}}" placeholder="Race Name"/>
+      </h1>
+      <div class="subheader muted">Race</div>
+    </div>
+  </header>
+
+  <section class="sheet-body">
+
+    {{!-- RACE IMAGE above description (stored at system.portrait) --}}
+    <section class="card block">
+      <h2 class="block-title">Image</h2>
+      <div class="race-image-row">
+        <img class="race-image" src="{{system.portrait}}" data-edit="system.portrait" alt="Race Image"/>
+        <div class="race-image-controls">
+          <label class="muted">Image URL</label>
+          <input type="text" name="system.portrait" value="{{system.portrait}}" placeholder="path/to/image.png"/>
+          <button type="button"
+                  class="file-picker"
+                  data-type="imagevideo"
+                  data-target="system.portrait"
+                  title="Browse Files">
+            <i class="fas fa-file-import"></i> Browse
+          </button>
+        </div>
+      </div>
+    </section>
+
+    {{!-- DESCRIPTION (rich text) --}}
+<section class="card block">
+  <h2 class="block-title">Description</h2>
+  {{editor system.description
+           target="system.description"
+           engine="prosemirror"
+           button=true
+           owner=owner
+           editable=editable}}
+</section>
+
+
+
+
+    {{!-- ATTRIBUTES --}}
+    <section class="card block">
+      <h2 class="block-title">Attributes</h2>
+
+      <div class="grid-attrs">
+        <label>Strength</label>
+        <input type="number" name="system.attributes.str.base" value="{{system.attributes.str.base}}" step="1"/>
+
+        <label>Constitution</label>
+        <input type="number" name="system.attributes.con.base" value="{{system.attributes.con.base}}" step="1"/>
+
+        <label>Dexterity</label>
+        <input type="number" name="system.attributes.dex.base" value="{{system.attributes.dex.base}}" step="1"/>
+
+        <label>Intelligence</label>
+        <input type="number" name="system.attributes.int.base" value="{{system.attributes.int.base}}" step="1"/>
+
+        <label>Charisma</label>
+        <input type="number" name="system.attributes.cha.base" value="{{system.attributes.cha.base}}" step="1"/>
+      </div>
+    </section>
+
+    {{!-- MOVEMENT SPEED --}}
+    <section class="card block">
+      <h2 class="block-title">Movement Speed</h2>
+
+      <div class="grid-move">
+        <label>Walking (Level)</label>
+        <input type="number" name="system.movement.walking.level" value="{{system.movement.walking.level}}" step="1"/>
+
+        <label>Swimming (Level)</label>
+        <input type="number" name="system.movement.swimming.level" value="{{system.movement.swimming.level}}" step="1"/>
+      </div>
+    </section>
+
+    {{!-- SENSES (simple list / optional) --}}
+    <section class="card block">
+      <h2 class="block-title">Senses</h2>
+      {{#if system.senses.length}}
+        <ul class="pill-list">
+          {{#each system.senses as |sense i|}}
+            <li class="pill">
+              <input type="text" name="system.senses.{{i}}" value="{{sense}}" placeholder="Darkvision 60 ft"/>
+            </li>
+          {{/each}}
+        </ul>
+      {{else}}
+        <div class="hint muted">Add senses as needed (e.g., 'Darkvision 60 ft').</div>
+      {{/if}}
+    </section>
+
+  </section>
+</form>

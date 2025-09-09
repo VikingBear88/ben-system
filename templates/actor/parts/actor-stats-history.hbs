@@ -1,0 +1,118 @@
+<!-- systems/ben-system/templates/actor/actor-stats-history.hbs -->
+<section class="ben-stats-history">
+
+  <!-- DAMAGE BREAKDOWN -->
+  <table class="ben-table ben-table--tight damage-breakdown">
+    <thead>
+      <tr>
+        <th>Damage Type</th>
+        <th class="num">Damage Done</th>
+        <th class="num">Damage Taken</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each damageTable as |group|}}
+        <!-- Parent (type) row – read-only totals -->
+        <tr class="group-row">
+          <td class="group-label">{{group.type}}</td>
+          <td class="num">{{group.total.done}}</td>
+          <td class="num">{{group.total.taken}}</td>
+        </tr>
+
+        {{#each group.rows as |row|}}
+          <tr class="sub-row">
+            <td class="sub-label">{{row.label}}</td>
+
+            <!-- Done with +/- -->
+            <td class="num">
+              <div class="stepper-cell">
+                <button type="button"
+                        class="hist-step dec"
+                        data-type="{{../type}}"
+                        data-source="{{row.label}}"
+                        data-field="done">−</button>
+                <span class="value">{{row.done}}</span>
+                <button type="button"
+                        class="hist-step inc"
+                        data-type="{{../type}}"
+                        data-source="{{row.label}}"
+                        data-field="done">+</button>
+              </div>
+            </td>
+
+            <!-- Taken with +/- -->
+            <td class="num">
+              <div class="stepper-cell">
+                <button type="button"
+                        class="hist-step dec"
+                        data-type="{{../type}}"
+                        data-source="{{row.label}}"
+                        data-field="taken">−</button>
+                <span class="value">{{row.taken}}</span>
+                <button type="button"
+                        class="hist-step inc"
+                        data-type="{{../type}}"
+                        data-source="{{row.label}}"
+                        data-field="taken">+</button>
+              </div>
+            </td>
+          </tr>
+        {{/each}}
+      {{/each}}
+
+      <!-- Grand total (computed, read-only) -->
+      <tr class="total-row">
+        <td class="total-label">Total</td>
+        <td class="num">{{grandTotals.done}}</td>
+        <td class="num">{{grandTotals.taken}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- STATUS PROCS -->
+  <table class="ben-table ben-table--tight status-procs">
+    <thead>
+      <tr>
+        <th>Status Type</th>
+        <th class="num">Times Proc'd</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each statusTable as |row|}}
+        <tr>
+          <td>{{row.status}}</td>
+          <td class="num">
+            <div class="stepper-cell">
+              <button type="button"
+                      class="hist-step dec"
+                      data-status="{{row.status}}">−</button>
+              <span class="value">{{row.count}}</span>
+              <button type="button"
+                      class="hist-step inc"
+                      data-status="{{row.status}}">+</button>
+            </div>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+</section>
+
+<style>
+  .ben-stats-history { display: grid; gap: 1rem; }
+  .ben-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  .ben-table th, .ben-table td { padding: 6px 8px; border: 1px solid rgb(255, 255, 255); }
+  .ben-table thead th { background: #1f1f1f; text-align: left; }
+  .ben-table .num { text-align: right; }
+  .ben-table .group-row { background: #e7f0ff; font-weight: 600; }
+  .ben-table .sub-row .sub-label { padding-left: 16px; }
+  .ben-table .total-row { background: #1f1f1f; color: #fff; font-weight: 700; }
+  .ben-table--tight th, .ben-table--tight td { padding-top: 4px; padding-bottom: 4px; }
+
+  .stepper-cell { display:inline-flex; align-items:center; gap:6px; justify-content:flex-end; }
+  .stepper-cell .value { min-width: 2.5em; display:inline-block; text-align:right; }
+  .hist-step { line-height: 1; padding: 0 6px; border: 1px solid #888; background: #f2f2f2; cursor: pointer; }
+  .hist-step:hover { background: #e6e6e6; }
+</style>

@@ -1,0 +1,29 @@
+<section class="ben-potions-inventory">
+<ol class="items-list potion-list">
+  <li class="items-header flexrow">
+    <div class="item-name">Name</div>
+    <div class="item-qty num">Qty</div>
+    <div class="item-value num">Value</div>
+    <div class="item-controls">Action</div>
+  </li>
+
+  {{#each potions as |it|}}
+    <li class="item flexrow" data-item-id="{{it._id}}">
+      <div class="item-name flexrow">
+        <img class="item-image" src="{{it.img}}" width="24" height="24"/>
+        <h4>{{it.name}}</h4>
+      </div>
+      <div class="item-qty num">{{it.system.quantity}}</div>
+      <div class="item-value num">{{it.system.value}}</div>
+      <div class="item-controls">
+        <button type="button" class="potion-consume" data-item-id="{{it._id}}">Consume</button>
+      </div>
+    </li>
+  {{/each}}
+
+  {{#unless potions.length}}
+    <li class="notes">No potions.</li>
+  {{/unless}}
+</ol>
+
+</section>

@@ -1,0 +1,27 @@
+<table class="items garbage-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th class="num">Qty</th>
+      <th class="num">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each garbage as |it|}}
+      <tr data-item-id="{{it._id}}">
+        <td>
+          <div class="item-name flexrow">
+            <img class="item-image" src="{{it.img}}" width="24" height="24"/>
+            <h4>{{it.name}}</h4>
+          </div>
+        </td>
+        <td class="num">{{it.system.quantity}}</td>
+        <td class="num">{{it.system.value}}</td>
+      </tr>
+    {{/each}}
+
+    {{#unless garbage.length}}
+      <tr><td colspan="3" class="notes">No garbage items.</td></tr>
+    {{/unless}}
+  </tbody>
+</table>

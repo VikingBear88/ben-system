@@ -1,0 +1,68 @@
+<div class="stat-total flex-group-center">
+  <label class="resource-label">Stat Point Total</label>
+  <p class="stat-total-value">{{system.attributes.total}}</p>
+</div>
+
+<div class="resources grid grid-5col">
+
+  <div class="resource flex-group-center">
+    <label class="resource-label">STR</label>
+    <div class="resource-content flexrow flex-center flex-between">
+      <button type="button" class="value stat-roll"
+              data-stat="STR"
+              data-value="{{system.attributes.str.value}}"
+              title="Roll STR (1d20 + modifier)">
+        {{system.attributes.str.value}}
+      </button>
+    </div>
+  </div>
+
+  <div class="resource flex-group-center">
+    <label class="resource-label">DEX</label>
+    <div class="resource-content flexrow flex-center flex-between">
+      <button type="button" class="value stat-roll"
+              data-stat="DEX"
+              data-value="{{system.attributes.dex.value}}"
+              title="Roll DEX (1d20 + modifier)">
+        {{system.attributes.dex.value}}
+      </button>
+    </div>
+  </div>
+
+  <div class="resource flex-group-center">
+    <label class="resource-label">CON</label>
+    <div class="resource-content flexrow flex-center flex-between">
+      <button type="button" class="value stat-roll"
+              data-stat="CON"
+              data-value="{{system.attributes.con.value}}"
+              title="Roll CON (1d20 + modifier)">
+        {{system.attributes.con.value}}
+      </button>
+    </div>
+  </div>
+
+  <div class="resource flex-group-center">
+    <label class="resource-label">INT</label>
+    <div class="resource-content flexrow flex-center flex-between">
+      <button type="button" class="value stat-roll"
+              data-stat="INT"
+              data-value="{{system.attributes.int.value}}"
+              title="Roll INT (1d20 + modifier)">
+        {{system.attributes.int.value}}
+      </button>
+    </div>
+  </div>
+
+  <div class="resource flex-group-center">
+    <label class="resource-label">CHA</label>
+    <div class="resource-content flexrow flex-center flex-between">
+      <button type="button" class="value stat-roll"
+              data-stat="CHA"
+              data-value="{{system.attributes.cha.value}}"
+              title="Roll CHA (1d20 + modifier)">
+        {{system.attributes.cha.value}}
+      </button>
+    </div>
+  </div>
+
+</div>

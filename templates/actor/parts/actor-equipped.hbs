@@ -1,0 +1,181 @@
+<section class="equip-totals">
+  <div class="equip-chip"><span class="lab">PAC</span><span class="val">{{equippedTotals.pac}}</span></div>
+  <div class="equip-chip"><span class="lab">MAC</span><span class="val">{{equippedTotals.mac}}</span></div>
+  <div class="equip-chip"><span class="lab">STR</span><span class="val">{{equippedTotals.str}}</span></div>
+  <div class="equip-chip"><span class="lab">DEX</span><span class="val">{{equippedTotals.dex}}</span></div>
+  <div class="equip-chip"><span class="lab">CON</span><span class="val">{{equippedTotals.con}}</span></div>
+  <div class="equip-chip"><span class="lab">INT</span><span class="val">{{equippedTotals.int}}</span></div>
+  <div class="equip-chip"><span class="lab">CHA</span><span class="val">{{equippedTotals.cha}}</span></div>
+</section>
+
+<section class="equipped-by-region">
+
+  {{!-- ======= Equipped Weapons accordion ======= --}}
+  <details class="eq-group weapons" open>
+    <summary class="eq-summary">
+      <span class="eq-name">Weapons</span>
+      <span class="eq-totals">
+        PAC {{equipWeapons.totals.pac}} • MAC {{equipWeapons.totals.mac}} •
+        STR {{equipWeapons.totals.str}} • DEX {{equipWeapons.totals.dex}} •
+        CON {{equipWeapons.totals.con}} • INT {{equipWeapons.totals.int}} • CHA {{equipWeapons.totals.cha}}
+      </span>
+    </summary>
+
+    <header class="items-header flexrow weapons-grid">
+      <div class="item-name">Weapon</div>
+      <div class="item-detail">Type</div>
+      <div class="item-detail">PAC</div>
+      <div class="item-detail">MAC</div>
+      <div class="item-detail">STR</div>
+      <div class="item-detail">DEX</div>
+      <div class="item-detail">CON</div>
+      <div class="item-detail">INT</div>
+      <div class="item-detail">CHA</div>
+      <div class="item-detail">Equipped</div>
+      <div class="item-controls"></div>
+    </header>
+
+    <ol class="item-list">
+      {{#each equipWeapons.items as |it|}}
+      <li class="item flexrow weapons-grid" data-item-id="{{it.id}}">
+        <div class="item-name"><a class="item-edit">{{it.name}}</a></div>
+        <div class="item-detail"><div class="item-label">{{it.system.weaponClass}}</div></div>
+
+        <div class="item-detail"><div class="item-label center">{{it.system.pacBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.macBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.strBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.dexBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.conBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.intBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.chaBonus}}</div></div>
+
+        <div class="item-detail center">
+          <input type="checkbox" class="item-field" data-path="system.equipped" {{checked it.system.equipped}}>
+        </div>
+
+        <div class="item-controls">
+          <a class="item-control item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+        </div>
+      </li>
+      {{/each}}
+    </ol>
+  </details>
+
+  {{!-- ======= Equipped Armour by Region (tattoos excluded) ======= --}}
+  {{#each equipGroups as |g|}}
+  <details class="eq-group" open>
+    <summary class="eq-summary">
+      <span class="eq-name">{{g.label}}</span>
+      <span class="eq-badge">
+        {{g.count}}{{#if g.max}} / {{g.max}}{{/if}}
+      </span>
+      <span class="eq-totals">
+        PAC {{g.totals.pac}} • MAC {{g.totals.mac}} •
+        STR {{g.totals.str}} • DEX {{g.totals.dex}} •
+        CON {{g.totals.con}} • INT {{g.totals.int}} • CHA {{g.totals.cha}}
+      </span>
+      <span class="eq-subs">
+        {{#each g.subs as |s|}}
+          <span class="eq-sub">
+            {{s.label}} {{s.count}}{{#if s.max}} / {{s.max}}{{/if}}
+          </span>{{#unless @last}} • {{/unless}}
+        {{/each}}
+      </span>
+    </summary>
+
+    <header class="items-header flexrow">
+      <div class="item-name">Armour</div>
+      <div class="item-detail">Sub-Slot</div>
+      <div class="item-detail">PAC</div>
+      <div class="item-detail">MAC</div>
+      <div class="item-detail">STR</div>
+      <div class="item-detail">DEX</div>
+      <div class="item-detail">CON</div>
+      <div class="item-detail">INT</div>
+      <div class="item-detail">CHA</div>
+      <div class="item-detail">Equipped</div>
+      <div class="item-controls"></div>
+    </header>
+
+    <ol class="item-list">
+      {{#each g.items as |it|}}
+      <li class="item flexrow" data-item-id="{{it.id}}">
+        <div class="item-name"><a class="item-edit">{{it.name}}</a></div>
+        <div class="item-detail"><div class="item-label">{{it.system.ui.subRegionLabel}}</div></div>
+
+        <div class="item-detail"><div class="item-label center">{{it.system.pacBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.macBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.strBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.dexBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.conBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.intBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.chaBonus}}</div></div>
+
+        <div class="item-detail center">
+          <input type="checkbox" class="item-field" data-path="system.equipped" {{checked it.system.equipped}}>
+        </div>
+
+        <div class="item-controls">
+          <a class="item-control item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+        </div>
+      </li>
+      {{/each}}
+    </ol>
+  </details>
+  {{/each}}
+
+  {{!-- ======= Tattoos (separate; controls disabled) ======= --}}
+  <details class="eq-group tattoos" open>
+    <summary class="eq-summary">
+      <span class="eq-name">Tattoos</span>
+      <span class="eq-totals">
+        PAC {{tattoos.totals.pac}} • MAC {{tattoos.totals.mac}} •
+        STR {{tattoos.totals.str}} • DEX {{tattoos.totals.dex}} •
+        CON {{tattoos.totals.con}} • INT {{tattoos.totals.int}} • CHA {{tattoos.totals.cha}}
+      </span>
+    </summary>
+
+    <header class="items-header flexrow">
+      <div class="item-name">Tattoo</div>
+      <div class="item-detail">Sub-Slot</div>
+      <div class="item-detail">PAC</div>
+      <div class="item-detail">MAC</div>
+      <div class="item-detail">STR</div>
+      <div class="item-detail">DEX</div>
+      <div class="item-detail">CON</div>
+      <div class="item-detail">INT</div>
+      <div class="item-detail">CHA</div>
+      <div class="item-detail">Equipped</div>
+      <div class="item-controls"></div>
+    </header>
+
+    <ol class="item-list">
+      {{#each tattoos.items as |it|}}
+      <li class="item flexrow" data-item-id="{{it.id}}">
+        <div class="item-name"><a class="item-edit">{{it.name}}</a></div>
+        <div class="item-detail"><div class="item-label">{{it.system.ui.subRegionLabel}}</div></div>
+
+        <div class="item-detail"><div class="item-label center">{{it.system.pacBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.macBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.strBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.dexBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.conBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.intBonus}}</div></div>
+        <div class="item-detail"><div class="item-label center">{{it.system.chaBonus}}</div></div>
+
+        <div class="item-detail center">
+          <input type="checkbox" disabled {{checked it.system.equipped}}>
+        </div>
+
+        <div class="item-controls">
+          <span class="item-control" title="Deletion disabled" style="opacity:.5; pointer-events:none;">
+            <i class="fas fa-trash"></i>
+          </span>
+        </div>
+      </li>
+      {{/each}}
+    </ol>
+  </details>
+
+</section>
+

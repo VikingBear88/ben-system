@@ -1,0 +1,80 @@
+<form>
+<section class="tab stats-body" data-group="stats" data-tab="miscstats">
+  <div class="table-toolbar flexrow">
+    <h3 class="section-title">Stats Vault</h3>
+    <div class="flex-spacer"></div>
+    <a class="button vault-add-row" title="Add Attribute Row"><i class="fas fa-plus"></i> Add Row</a>
+  </div>
+
+  <div class="off-scroll">
+    <table class="off-table">
+      <thead>
+        <tr>
+          <th class="col-name">Attribute</th>
+          <th class="col-mini col-idx">#</th>
+          <th class="col-mini"><span class="th-diag">Level</span></th>
+
+          <th><span class="th-diag">Detail 1</span></th>
+          <th><span class="th-diag">Detail 2</span></th>
+          <th><span class="th-diag">Detail 3</span></th>
+          <th><span class="th-diag">Detail 4</span></th>
+          <th><span class="th-diag">Detail 5</span></th>
+          <th><span class="th-diag">Detail 6</span></th>
+          <th><span class="th-diag">Detail 7</span></th>
+          <th><span class="th-diag">Detail 8</span></th>
+          <th><span class="th-diag">Detail 9</span></th>
+          <th><span class="th-diag">Detail 10</span></th>
+
+          <th class="col-actions"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {{#each system.statsVault.attributes as |row i|}}
+        <tr class="vault-row" data-index="{{i}}">
+          <!-- Attribute name -->
+          <td>
+            <input type="text"
+                   name="system.statsVault.attributes.{{i}}.name"
+                   value="{{row.name}}"
+                   placeholder="Attribute"/>
+          </td>
+
+          <!-- Index -->
+          <td class="col-idx" aria-label="Row Index">{{i}}</td>
+
+          <!-- Level -->
+          <td>
+            <input type="number" step="1"
+                   name="system.statsVault.attributes.{{i}}.level"
+                   value="{{row.level}}" disabled />
+          </td>
+
+          <!-- Details 1..10 -->
+          <td><input type="number" step="1" name="system.statsVault.attributes.{{i}}.detail1"  value="{{row.detail1}}"  disabled /></td>
+          <td><input type="number" step="1" name="system.statsVault.attributes.{{i}}.detail2"  value="{{row.detail2}}"  disabled /></td>
+          <td><input type="number" step="1" name="system.statsVault.attributes.{{i}}.detail3"  value="{{row.detail3}}"  disabled /></td>
+          <td><input type="number" step="1" name="system.statsVault.attributes.{{i}}.detail4"  value="{{row.detail4}}"  disabled /></td>
+          <td><input type="number" step="1" name="system.statsVault.attributes.{{i}}.detail5"  value="{{row.detail5}}"  disabled /></td>
+          <td><input type="number" step="1" name="system.statsVault.attributes.{{i}}.detail6"  value="{{row.detail6}}"  disabled /></td>
+          <td><input type="number" step="1" name="system.statsVault.attributes.{{i}}.detail7"  value="{{row.detail7}}"  disabled /></td>
+          <td><input type="number" step="1" name="system.statsVault.attributes.{{i}}.detail8"  value="{{row.detail8}}"  disabled /></td>
+          <td><input type="number" step="1" name="system.statsVault.attributes.{{i}}.detail9"  value="{{row.detail9}}"  disabled /></td>
+          <td><input type="number" step="1" name="system.statsVault.attributes.{{i}}.detail10" value="{{row.detail10}}" disabled /></td>
+
+          <td class="row-actions">
+            <a class="vault-del-row" data-index="{{i}}" title="Delete Row"><i class="fas fa-trash"></i></a>
+          </td>
+        </tr>
+        {{/each}}
+
+        {{#unless system.statsVault.attributes.length}}
+        <tr class="empty">
+          <td colspan="14">No attributes yet. Click <b>Add Row</b> to start.</td>
+        </tr>
+        {{/unless}}
+      </tbody>
+    </table>
+  </div>
+</section>
+</form>

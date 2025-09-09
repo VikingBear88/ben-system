@@ -1,0 +1,98 @@
+<section class="defences-subtab">
+
+  <h3 class="center">Defences</h3>
+
+{{!-- ==================== Physical AC ==================== --}}
+<h4 class="center">Physical AC</h4>
+<table class="def-table">
+  <thead>
+    <tr>
+      <th>Base DEX</th>
+      <th>DEX Skill Modifier</th>
+      <th>Base CON</th>
+      <th>CON Skill Modifier</th>
+      <th>Gear Bonus</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="center">{{system.defences.physical.baseDex}}</td>
+      <td class="center">
+        <input type="number" name="system.defences.physical.dexSkill"
+               value="{{system.defences.physical.dexSkill}}" step="1"/>
+      </td>
+      <td class="center">{{system.defences.physical.baseCon}}</td>
+      <td class="center">
+        <input type="number" name="system.defences.physical.conSkill"
+               value="{{system.defences.physical.conSkill}}" step="1"/>
+      </td>
+      {{!-- Read-only: total PAC from equipped items --}}
+      <td class="center">
+        <span class="item-label">{{equippedTotals.pac}}</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+{{!-- ==================== Magical AC ==================== --}}
+<h4 class="center">Magical AC</h4>
+<table class="def-table">
+  <thead>
+    <tr>
+      <th>Base INT</th>
+      <th>INT Skill Modifier</th>
+      <th>Base CHA</th>
+      <th>CHA Skill Modifier</th>
+      <th>Gear Bonus</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="center">{{system.defences.magical.baseInt}}</td>
+      <td class="center">
+        <input type="number" name="system.defences.magical.intSkill"
+               value="{{system.defences.magical.intSkill}}" step="1"/>
+      </td>
+      <td class="center">{{system.defences.magical.baseCha}}</td>
+      <td class="center">
+        <input type="number" name="system.defences.magical.chaSkill"
+               value="{{system.defences.magical.chaSkill}}" step="1"/>
+      </td>
+      {{!-- Read-only: total MAC from equipped items --}}
+      <td class="center">
+        <span class="item-label">{{equippedTotals.mac}}</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+  {{!-- ==================== Health ==================== --}}
+  <h4 class="center">Health</h4>
+  <table class="def-table">
+    <thead>
+      <tr>
+        <th>Total CON</th>
+        <th>CON HP Modifier</th>
+        <th>CON Skill Bonus</th>
+        <th>Benefit Bonus</th>
+        <th>Gear Bonus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="center">{{system.defences.health.totalCon}}</td>
+        <td class="center">{{system.defences.health.hpMod}}</td>
+        <td class="center">{{system.defences.health.conSkillBonus}}</td>
+        <td class="center">
+          <input type="number" name="system.defences.health.benefit"
+                 value="{{system.defences.health.benefit}}" step="1"/>
+        </td>
+        <td class="center">
+          <input type="number" name="system.defences.health.gear"
+                 value="{{system.defences.health.gear}}" step="1"/>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</section>
